@@ -5,7 +5,7 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.PROXYCURL_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: 'Proxycurl API key not configured' });
+    return res.status(200).json({ error: 'PROXYCURL_API_KEY is not set in Vercel environment variables.' });
   }
 
   const { linkedin_url } = req.body || {};
@@ -34,14 +34,28 @@ export default async function handler(req, res) {
     let data = {};
     try { data = JSON.parse(rawText); } catch(e) {}
 
+    // Always return debug info so we can diagnose
+    const debug = {
+      http_status: response.status,
+      key_preview: apiKey.slice(0, 6) + '...',
+      key_length: apiKey.length,
+      has_first_name: !!data.first_name,
+      has_last_name: !!data.last_name,
+      top_keys: Object.keys(data).slice(0, 15),
+      raw_error: data.error || data.message || null,
+    };
+
+    if (response.status === 401 || response.status === 403) {
+      return res.status(200).json({ error: 'Invalid API key', debug });
+    }
     if (response.status === 429) {
-      return res.status(200).json({ error: 'Rate limit reached', code: 429, _raw_status: 429 });
+      return res.status(200).json({ error: 'Rate limit reached', code: 429, debug });
     }
     if (response.status === 404) {
-      return res.status(200).json({ error: 'Profile not found', code: 404, _raw_status: 404 });
+      return res.status(200).json({ error: 'Profile not found', code: 404, debug });
     }
     if (!response.ok) {
-      return res.status(200).json({ error: `Proxycurl error: ${response.status}`, code: response.status, _raw_status: response.status, _raw_body: rawText.slice(0, 300) });
+      return res.status(200).json({ error: `Proxycurl error: ${response.status}`, debug });
     }
 
     const result = {
@@ -53,19 +67,12 @@ export default async function handler(req, res) {
         num_likes: a.num_likes || 0,
         num_comments: a.num_comments || 0,
       })),
-      // Debug: raw fields from Proxycurl
-      _raw_first_name: data.first_name,
-      _raw_last_name: data.last_name,
-      _raw_follower_count: data.follower_count,
-      _raw_connections: data.connections,
-      _raw_headline: data.headline,
-      _raw_status: response.status,
-      _raw_keys: Object.keys(data).slice(0, 20),
+      debug,
     };
 
     return res.status(200).json(result);
 
   } catch (err) {
-    return res.status(200).json({ error: 'Network error: ' + err.message, code: 0 });
+    return res.status(200).json({ error: 'Network error: ' + err.message });
   }
 }
