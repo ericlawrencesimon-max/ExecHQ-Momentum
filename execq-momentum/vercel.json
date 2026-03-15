@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/api/claude", "destination": "/api/claude" },
+    { "source": "/api/proxycurl", "destination": "/api/proxycurl" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
