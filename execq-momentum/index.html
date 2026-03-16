@@ -1,17 +1,35 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ExecQ">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0a0f1e">
+<meta name="description" content="Your private executive intelligence platform. Know where you stand. Act at the right moment.">
+<link rel="manifest" href="data:application/json,{
+  %22name%22:%22ExecQ Momentum%22,
+  %22short_name%22:%22ExecQ%22,
+  %22description%22:%22Executive Intelligence Platform%22,
+  %22start_url%22:%22/%22,
+  %22display%22:%22standalone%22,
+  %22background_color%22:%22%230a0f1e%22,
+  %22theme_color%22:%22%230a0f1e%22,
+  %22orientation%22:%22portrait%22,
+  %22icons%22:[{%22src%22:%22data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230a0f1e'/><rect width='100' height='100' rx='22' fill='none' stroke='%23ecbf5a' stroke-width='3'/><text y='.9em' font-size='60' x='50%' text-anchor='middle' dominant-baseline='middle' dy='0.1em'>⚡</text></svg>%22,%22sizes%22:%22any%22,%22type%22:%22image/svg+xml%22}]
+}">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230a0f1e'/><text y='.9em' font-size='60' x='50%' text-anchor='middle' dominant-baseline='middle' dy='0.1em'>⚡</text></svg>"><style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0a0f1e;color:#eef0f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;display:flex;justify-content:center;min-height:100vh}
+body{background:#0a0f1e;color:#eef0f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;display:flex;justify-content:center;min-height:100vh;min-height:-webkit-fill-available}
 #root{width:100%;max-width:430px;height:100vh;position:relative;background:#0a0f1e;display:flex;flex-direction:column;overflow:hidden}
 .page{display:flex;flex-direction:column;height:100%;overflow:hidden}
 .page-body{flex:1;overflow-y:auto;padding:24px 24px 12px;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;justify-content:center}
 .page-foot{flex-shrink:0;padding:10px 24px 20px;background:#0a0f1e;border-top:1px solid rgba(255,255,255,0.06)}
-.app-body{flex:1;overflow-y:auto;padding:50px 20px 120px;-webkit-overflow-scrolling:touch}
+.app-body{flex:1;overflow-y:auto;padding:50px 20px 120px;padding-bottom:calc(120px + env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch}
 @keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(236,191,90,0)}50%{box-shadow:0 0 0 8px rgba(236,191,90,0.10)}}
 .skel{background:linear-gradient(90deg,#1a2640 25%,#243050 50%,#1a2640 75%);background-size:400px 100%;animation:shimmer 1.4s infinite;border-radius:8px}
 .spin{width:22px;height:22px;border:3px solid #ecbf5a;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite}
-.tab-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#111827;border-top:1px solid rgba(255,255,255,0.08);padding:6px 8px 12px;z-index:100;display:flex;overflow-x:auto;gap:2px;scrollbar-width:none}
+.tab-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#111827;border-top:1px solid rgba(255,255,255,0.08);padding:6px 8px 12px;padding-bottom:max(12px,env(safe-area-inset-bottom));z-index:100;display:flex;overflow-x:auto;gap:2px;scrollbar-width:none}
 .tab-bar::-webkit-scrollbar{display:none}
 .tab{flex:0 0 auto;min-width:62px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:5px 6px;border-radius:10px;transition:background 0.15s,transform 0.15s}
 .tab:active{transform:scale(0.88)}
@@ -103,6 +121,16 @@ function logo(){return`<div class="logo-wrap"><div class="logo-icon">⚡</div><d
 function subRow(sc){return`<div style="display:flex;flex-wrap:wrap;gap:6px">${SRCS.map(s=>`<div style="background:rgba(0,0,0,0.2);border-radius:10px;padding:8px;min-width:30%;flex:1"><p style="font-size:9px;font-weight:600;color:#6e7a96;margin-bottom:3px">${s.label}</p><p style="font-size:20px;font-weight:800;line-height:1.1;color:${s.color}">${sc[s.key]??0}</p></div>`).join('')}</div>`;}
 function bar(val,color,delay=0){return`<div style="flex:1;height:5px;background:#1f2d4a;border-radius:3px;overflow:hidden"><div data-bar="${val}" data-delay="${delay}" style="height:100%;border-radius:3px;background:${color};width:0%"></div></div>`;}
 function prog(step,total){return`<div style="display:flex;gap:6px;margin-bottom:20px">${Array.from({length:total}).map((_,i)=>`<div style="flex:1;height:3px;border-radius:2px;background:${i<step?'#ecbf5a':'#1a2640'};transition:background 0.3s"></div>`).join('')}</div>`;}
+
+function showInstallTip(){
+  const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isAndroid=/android/i.test(navigator.userAgent);
+  const isStandalone=window.matchMedia('(display-mode:standalone)').matches||window.navigator.standalone;
+  if(isStandalone||(!isIOS&&!isAndroid))return'';
+  if(isIOS)return`<div style="background:rgba(236,191,90,0.08);border:1px solid rgba(236,191,90,0.2);border-radius:10px;padding:10px 14px;margin-top:10px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">📲</span><p style="font-size:11px;color:#b0b8d0;line-height:1.5">Tap <strong style="color:#ecbf5a">Share</strong> then <strong style="color:#ecbf5a">Add to Home Screen</strong> for the full app experience</p></div>`;
+  if(isAndroid)return`<div style="background:rgba(236,191,90,0.08);border:1px solid rgba(236,191,90,0.2);border-radius:10px;padding:10px 14px;margin-top:10px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">📲</span><p style="font-size:11px;color:#b0b8d0;line-height:1.5">Tap <strong style="color:#ecbf5a">⋮ Menu</strong> then <strong style="color:#ecbf5a">Add to Home Screen</strong> for the full app experience</p></div>`;
+  return'';
+}
 function renderSplash(){return`<div class="page"><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 28px 8px;text-align:center;overflow:hidden;min-height:0">
 <div style="position:relative;margin-bottom:20px;flex-shrink:0">
   <div style="width:72px;height:72px;border-radius:22px;background:linear-gradient(135deg,#1a2640,#0d1829);border:1px solid rgba(236,191,90,0.35);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto;box-shadow:0 0 40px rgba(236,191,90,0.12)">⚡</div>
