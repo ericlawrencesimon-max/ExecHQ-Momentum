@@ -842,7 +842,7 @@ function renderProfile(){
       +'<input type="text" id="src-name" placeholder="e.g. Axios Pro Rata"></div>'
       +'<div class="ig" style="margin-bottom:10px"><label class="lbl" style="margin-bottom:5px">URL (optional)</label>'
       +'<input type="text" id="src-url" placeholder="e.g. axios.com/pro"></div>'
-      +'<button onclick="addCustomSource()" style="width:100%;background:#ecbf5a;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:800;color:#0a0f1e;cursor:pointer">+ Add Source</button>'
+       +'<button onclick="(function(){var ni=document.getElementById(\'src-name\');var ui=document.getElementById(\'src-url\');var name=ni?ni.value.trim():\'\';if(!name){alert(\'Type a name first\');return;}var c=(S.customSources||[]).slice();c.push({name:name,url:ui?ui.value.trim():\'\'});ni.value=\'\';if(ui)ui.value=\'\';S.customSources=c;saveUserData();render();alert(\'Added: \'+name);})()" style="width:100%;background:#ecbf5a;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:800;color:#0a0f1e;cursor:pointer">+ Add Source</button>'
       +'</div>'
       +'<div onclick="SA.signOut().then(()=>ss({screen:\'splash\',user:null,indexResult:null,signals:JSON.parse(JSON.stringify(DEF)),ud:{name:\'\',title:\'\',company:\'\',industry:\'\',expertise:\'\',goals:[],shareEcosystem:true,partnerActivations:true,searchAlerts:false}}))" class="click" style="background:#1a2640;border-radius:14px;border:1px solid rgba(255,255,255,0.07);padding:14px"><p style="font-size:14px;font-weight:600;color:#6e7a96">Sign Out</p></div>'
       +'</div>';
