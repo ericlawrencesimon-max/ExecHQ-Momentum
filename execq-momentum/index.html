@@ -824,7 +824,7 @@ function renderProfile(){
         +'</div></div>';
     });
  
-    const customList=(S.customSources||[]).map((s,i)=>{return'<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px"><div style="padding:6px 11px;border-radius:20px;background:rgba(236,191,90,0.12);border:1px solid rgba(236,191,90,0.35);font-size:11px;font-weight:600;color:#ecbf5a">'+s.name+'</div><button onclick="const c=[...S.customSources];c.splice('+i+',1);ss({customSources:c})" style="background:none;border:none;font-size:10px;color:#3a4660;cursor:pointer;padding:2px 4px">&#10005;</button></div>';}).join('');
+     const customList=(S.customSources||[]).map((s,i)=>{return'<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px"><div style="padding:6px 11px;border-radius:20px;background:rgba(236,191,90,0.12);border:1px solid rgba(236,191,90,0.35);font-size:11px;font-weight:600;color:#ecbf5a">'+s.name+'</div><button onclick="const c=[...S.customSources];c.splice('+i+',1);ss({customSources:c})" style="background:none;border:none;font-size:13px;color:#e05a7a;cursor:pointer;padding:2px 6px">&#10005;</button></div>';}).join('');
 
  
     return '<div>'
