@@ -66,10 +66,10 @@ let _cu=null,_al=[];
 function _lsGet(k){try{const v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch{return null;}}
 function _lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
 function _lsDel(k){try{localStorage.removeItem(k);}catch{}}
-
+ 
 // Restore session on load
 (function(){const s=_lsGet('execq_session');if(s&&s.uid&&s.email){_cu={uid:s.uid,email:s.email};}})();
-
+ 
 const SA={
   onAuthStateChanged:(cb)=>{_al.push(cb);setTimeout(()=>cb(_cu),80);return()=>{_al=_al.filter(l=>l!==cb)}},
   createUser:async(e,p)=>{
@@ -144,7 +144,7 @@ function logo(){return`<div class="logo-wrap"><div class="logo-icon">⚡</div><d
 function subRow(sc){return`<div style="display:flex;flex-wrap:wrap;gap:6px">${SRCS.map(s=>`<div style="background:rgba(0,0,0,0.2);border-radius:10px;padding:8px;min-width:30%;flex:1"><p style="font-size:9px;font-weight:600;color:#6e7a96;margin-bottom:3px">${s.label}</p><p style="font-size:20px;font-weight:800;line-height:1.1;color:${s.color}">${sc[s.key]??0}</p></div>`).join('')}</div>`;}
 function bar(val,color,delay=0){return`<div style="flex:1;height:5px;background:#1f2d4a;border-radius:3px;overflow:hidden"><div data-bar="${val}" data-delay="${delay}" style="height:100%;border-radius:3px;background:${color};width:0%"></div></div>`;}
 function prog(step,total){return`<div style="display:flex;gap:6px;margin-bottom:20px">${Array.from({length:total}).map((_,i)=>`<div style="flex:1;height:3px;border-radius:2px;background:${i<step?'#ecbf5a':'#1a2640'};transition:background 0.3s"></div>`).join('')}</div>`;}
-
+ 
 function showInstallTip(){
   const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
   const isAndroid=/android/i.test(navigator.userAgent);
@@ -175,11 +175,11 @@ function renderSplash(){return`<div class="page"><div style="flex:1;display:flex
   </div>
 </div></div>`;}
 function renderBetaGate(){return`<div class="page"><div class="page-body" style="justify-content:flex-start;padding-top:48px"><div style="width:64px;height:64px;border-radius:20px;background:#1a2640;border:1px solid rgba(236,191,90,0.3);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px">⚡</div><div style="display:flex;align-items:baseline;margin-bottom:6px"><span style="font-size:24px;font-weight:800;color:#6e7a96">Exec</span><span style="font-size:24px;font-weight:800;color:#ecbf5a">Q</span><span style="font-size:24px;font-weight:800;color:#eef0f7"> Momentum</span></div><p style="font-size:11px;color:#ecbf5a;letter-spacing:2px;font-weight:700;text-transform:uppercase;margin-bottom:28px">Private Beta</p><p style="font-size:20px;font-weight:800;color:#eef0f7;margin-bottom:8px">You've been invited.</p><p style="font-size:13px;color:#6e7a96;margin-bottom:28px;line-height:1.6">ExecQ Momentum is currently invite-only. Enter your beta access code to continue.</p><div class="ig"><label class="lbl">Beta Access Code</label><input type="text" id="beta-code-input" placeholder="Enter your code" style="text-transform:uppercase;letter-spacing:2px;font-weight:700;font-size:16px;text-align:center" oninput="this.value=this.value.toUpperCase()"></div><p id="beta-err" style="color:#e05a7a;font-size:13px;text-align:center;margin-bottom:10px;display:none">Invalid code. Please check and try again.</p></div><div class="page-foot"><button class="btn btn-gold" onclick="checkBetaCode()">Unlock Access →</button><p style="font-size:11px;color:#3a4660;text-align:center;margin-top:10px">Don't have a code? Request access at theexecdesk.ai</p></div></div>`;}
-
+ 
 function checkBetaCode(){const input=document.getElementById('beta-code-input')?.value?.trim().toUpperCase()||'';const err=document.getElementById('beta-err');if(input===BETA_CODE){_lsSet('execq_beta_verified',true);ss({screen:'beta_welcome',betaVerified:true});}else{if(err){err.style.display='block';setTimeout(()=>{if(err)err.style.display='none';},3000);}}}
-
+ 
 function renderBetaWelcome(){return`<div class="page"><div class="page-body" style="justify-content:flex-start;padding-top:40px"><div style="width:56px;height:56px;border-radius:18px;background:rgba(236,191,90,0.1);border:1px solid rgba(236,191,90,0.3);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px">🎉</div><div style="display:inline-flex;align-items:center;gap:6px;background:rgba(236,191,90,0.08);border:1px solid rgba(236,191,90,0.25);border-radius:20px;padding:5px 14px;margin-bottom:20px"><span style="font-size:11px;font-weight:800;color:#ecbf5a;letter-spacing:1px;text-transform:uppercase">⚡ Beta Tester</span></div><p style="font-size:24px;font-weight:800;color:#eef0f7;line-height:1.25;margin-bottom:12px">Welcome to the inner circle.</p><p style="font-size:14px;color:#b0b8d0;line-height:1.7;margin-bottom:24px">You're one of the first executives to access ExecQ Momentum. This is a private beta — your feedback directly shapes the product.</p><div style="display:flex;flex-direction:column;gap:10px;margin-bottom:8px">${[['⚡','ExecQ Index™','Your personal branding score across 6 signal categories'],['☀️','Morning Briefing','AI-curated articles + ready-to-post LinkedIn drafts'],['🎯','Opportunity Engine','Real, named opportunities matched to your goals'],['🤖','AI Coach','Personalized advice based on your actual signal data']].map(([icon,title,desc])=>`<div style="background:#1a2640;border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,0.07)"><div style="width:38px;height:38px;border-radius:10px;background:rgba(236,191,90,0.08);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">${icon}</div><div><p style="font-size:13px;font-weight:700;color:#eef0f7;margin-bottom:2px">${title}</p><p style="font-size:11px;color:#6e7a96">${desc}</p></div></div>`).join('')}</div></div><div class="page-foot"><button class="btn btn-gold" onclick="ss({screen:'auth'})">Create My Account →</button><p style="font-size:11px;color:#3a4660;text-align:center;margin-top:8px">🔒 Private by default · Your data never sold</p></div></div>`;}
-
+ 
 function renderAuth(){return`<div class="page"><div class="page-body" style="justify-content:flex-start;padding-top:40px"><div style="width:56px;height:56px;border-radius:18px;background:#1a2640;border:1px solid rgba(236,191,90,0.3);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px">⚡</div><p style="font-size:22px;font-weight:800;color:#eef0f7;margin-bottom:6px">${AM==='signup'?'Create your account.':'Welcome back.'}</p><p style="font-size:13px;color:#6e7a96;margin-bottom:22px;font-style:italic">${AM==='signup'?'Your executive intelligence platform awaits.':'Sign in to your dashboard.'}</p><div class="ig"><label class="lbl">Email</label><input type="email" id="ae" placeholder="you@company.com"></div><div class="ig"><label class="lbl">Password</label><input type="password" id="ap" placeholder="Min. 6 characters"></div><p id="aerr" style="color:#e05a7a;font-size:13px;margin-bottom:10px;text-align:center;display:none"></p><p style="font-size:13px;color:#6e7a96;text-align:center;cursor:pointer;margin-top:8px" onclick="AM=AM==='signup'?'login':'signup';ss({})">${AM==='signup'?'Already have an account? ':'No account? '}<span style="color:#ecbf5a">${AM==='signup'?'Sign in':'Sign up'}</span></p></div><div class="page-foot"><button class="btn btn-gold" onclick="doAuth()">${AM==='signup'?'Create Account →':'Sign In →'}</button><button class="btn btn-demo" onclick="enterDemo()">⚡ Try Demo Mode instead</button></div></div>`;}
 async function doAuth(){const e=document.getElementById('ae')?.value||'';const p=document.getElementById('ap')?.value||'';const err=document.getElementById('aerr');if(err)err.style.display='none';try{let u;if(AM==='login'){u=await SA.signIn(e,p);}else{u=await SA.createUser(e,p);}ss({user:u,screen:AM==='login'?'app':'prof1'});}catch(ex){if(err){err.textContent=ex.message;err.style.display='block';}}}
 function obWrap(step,title,sub,body,nextLabel,nextFn,skipFn){return`<div class="page"><div class="page-body" style="justify-content:flex-start;padding-top:32px">${logo()}${prog(step,6)}<p style="font-size:22px;font-weight:800;color:#eef0f7;line-height:1.25;margin-bottom:8px">${title}</p><p style="font-size:13px;color:#6e7a96;margin-bottom:20px;font-style:italic">${sub}</p>${body}</div><div class="page-foot"><button class="btn btn-gold" onclick="${nextFn}">${nextLabel}</button>${skipFn?`<button class="btn btn-ghost" onclick="${skipFn}">Skip for now</button>`:''}</div></div>`;}
@@ -256,7 +256,7 @@ function renderProf4(){
 }
 function saveProf4(){const followers=parseInt(document.getElementById('li-followers')?.value||'0')||0;const connections=parseInt(document.getElementById('li-connections')?.value||'0')||0;if(followers>0||connections>0){const draft=JSON.parse(JSON.stringify(DEF));draft.linkedin.followers=followers;draft.linkedin.connections=Math.min(connections,5000);draft.linkedin.engagementRate=2.5;const res=calcIndex(draft);ss({signals:draft,sigDraft:JSON.parse(JSON.stringify(draft)),indexResult:res,screen:'prof5'});if(S.user)SDB.set(S.user.uid,{...S.ud,signals:draft,indexResult:res});}else{ss({screen:'prof5'});}}
 function scanObLI(){const url=document.getElementById('ob-li-url')?.value||'';ss({liUrl:url,liUrlStatus:'validating'});if(!/^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9\-_%]+\/?/.test(url.trim())){ss({liUrlStatus:'invalid'});return;}fetch('/api/proxycurl',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({linkedin_url:url.trim()})}).then(r=>r.json()).then(data=>{const draft=JSON.parse(JSON.stringify(DEF));if(!data.error&&data.code!==404){const followers=data.follower_count||0;const connections=data.connections||0;const posts=data.activities||[];const engagementRate=posts.length>0?Math.min(10,posts.reduce((a,p)=>a+(((p.num_likes||0)+(p.num_comments||0))/Math.max(1,followers)*100),0)/posts.length):0;draft.linkedin.followers=followers;draft.linkedin.connections=Math.min(connections,5000);draft.linkedin.engagementRate=Math.round(engagementRate*10)/10;ss({liUrlStatus:'valid',liDraft:draft,liEdited:{},liRealData:{name:data.full_name,headline:data.headline,followers,connections}});}else{ss({liUrlStatus:'valid',liDraft:draft,liEdited:{}});}}).catch(()=>{ss({liUrlStatus:'valid',liDraft:JSON.parse(JSON.stringify(DEF)),liEdited:{}});});}
-
+ 
 function goToProf5(){if(S.liDraft&&S.liUrlStatus==='valid'){const res=calcIndex(S.liDraft);if(S.user)SDB.set(S.user.uid,{...S.ud,signals:S.liDraft,indexResult:res});ss({signals:S.liDraft,sigDraft:JSON.parse(JSON.stringify(S.liDraft)),indexResult:res,screen:'prof5',liUrlStatus:null});}else{ss({screen:'prof5',liUrlStatus:null});}}
 function applyObLIData(){if(!S.liDraft)return;const res=calcIndex(S.liDraft);ss({signals:S.liDraft,sigDraft:JSON.parse(JSON.stringify(S.liDraft)),indexResult:res});if(S.user)SDB.set(S.user.uid,{...S.ud,signals:S.liDraft,indexResult:res});}
 function renderProf5(){
@@ -289,7 +289,7 @@ function renderCalc(){
   const score=S.calcResult?.total??0;
   const bm=S.calcResult?getBenchmark(score,S.ud.title,S.ud.industry):null;
   const name=S.ud.name?S.ud.name.split(' ')[0]:'';
-
+ 
   // Context message based on score
   function getScoreContext(s,level){
     if(s>=70)return'Your personal brand is operating at board level. You are in the top tier of executives in your field.';
@@ -299,7 +299,7 @@ function renderCalc(){
     if(s>=12)return'Your presence is underweight for your seniority. The good news: this is fixable quickly with focused action.';
     return'Most executives at your level are more visible online. This is a significant opportunity — you can move fast from here.';
   }
-
+ 
   return`<div class="page"><div class="page-body" style="justify-content:flex-start;padding-top:36px;overflow-y:auto">
   ${!S.calcDone?`
   <div style="width:48px;height:48px;border-radius:14px;background:#1a2640;border:1px solid rgba(236,191,90,0.3);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px">⚡</div>
@@ -484,7 +484,7 @@ function renderShareOverlay(){
     +'<p style="font-size:11px;color:#3a4660;text-align:center">Download the card \u2192 attach it to your LinkedIn post</p>'
     +'</div></div>';
 }
-
+ 
 async function fetchWeeklyReport(){
   ss({weeklyReportLoading:true,weeklyReport:null,weeklyReportError:null,weeklyReportOpen:true});
   const{ud,indexResult:ir,signals:sig,scoreHistory:hist}=S;
@@ -575,7 +575,7 @@ function renderWeeklyReportOverlay(){
     +(r&&!loading?'<button onclick="(function(){const el=document.getElementById(\'weekly-report-content\');if(!el)return;const t=el.innerText;navigator.clipboard.writeText(t).catch(function(){});})()" style="width:100%;margin-top:16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px;font-size:13px;font-weight:700;color:#6e7a96;cursor:pointer">📋 Copy Brief</button>':'')
     +'</div></div>';
 }
-
+ 
 async function fetchWhyNow(){
   ss({whyNowLoading:true,whyNow:null,whyNowError:null,whyNowOpen:true});
   const{ud,indexResult:ir}=S;
@@ -669,7 +669,7 @@ ${score>0?`<div class="card" style="border:1px solid rgba(107,159,245,0.2);backg
 <div onclick="fetchWeeklyReport()" class="click" style="background:rgba(107,159,245,0.05);border:1px solid rgba(107,159,245,0.18);border-radius:14px;padding:16px;margin-bottom:12px"><div style="display:flex;align-items:center;gap:12px"><div style="width:40px;height:40px;border-radius:12px;background:rgba(107,159,245,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">📋</div><div style="flex:1"><p style="font-size:13px;font-weight:700;color:#eef0f7;margin-bottom:3px">Momentum Brief</p><p style="font-size:11px;color:#6e7a96">AI advisor brief · score, signals & one action</p></div><span style="font-size:18px;color:#6b9ff5">→</span></div></div>
 <button onclick="ss({showShare:true});setTimeout(drawShareCard,80)" style="width:100%;background:linear-gradient(135deg,rgba(236,191,90,0.12),rgba(107,159,245,0.08));border:1px solid rgba(236,191,90,0.3);border-radius:14px;padding:16px;cursor:pointer;display:flex;align-items:center;gap:14px;margin-bottom:10px;text-align:left"><div style="width:40px;height:40px;border-radius:12px;background:rgba(236,191,90,0.15);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🏆</div><div style="flex:1"><p style="font-size:13px;font-weight:700;color:#ecbf5a;margin-bottom:3px">Share My ExecQ Card</p><p style="font-size:11px;color:#6e7a96">Download your score card · Post to LinkedIn</p></div><span style="font-size:18px;color:#ecbf5a">→</span></button>
 </div>`;}
-
+ 
 async function fetchPost(){
   ss({postLoading:true,postResult:null,postError:null,postCopied:false});
   const{ud,indexResult:ir,postFormat:fmt,postTone:tone}=S;
@@ -733,19 +733,19 @@ return`<div class="app-body"><div class="top-bar">${logo()}<div style="width:36p
 function renderSignals(){const src=SRCS.find(s=>s.key===S.sigTab);const fields=SF[S.sigTab];const lr=calcIndex(S.sigDraft);const saved=calcIndex(S.signals);const lv=getLevel(lr.total);const delta=lr.total-saved.total;return`<div class="app-body"><div class="top-bar">${logo()}</div>${S.sigSaved?`<div style="background:rgba(52,212,112,0.1);border:1px solid rgba(52,212,112,0.25);border-radius:12px;padding:12px 16px;display:flex;gap:10px;margin-bottom:12px"><span>✓</span><p style="font-size:13px;font-weight:600;color:#34d470">Signals saved!</p></div>`:''}<p style="font-size:22px;font-weight:800;color:#eef0f7;margin-bottom:4px">My Signal Data</p><p style="font-size:13px;color:#6e7a96;margin-bottom:12px;font-style:italic">Enter your real stats — your index updates live.</p><div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:16px">${[{k:"linkedin",w:30},{k:"press",w:20},{k:"speaking",w:18},{k:"podcast",w:15},{k:"blog",w:10},{k:"board",w:7}].map(x=>{const src=SRCS.find(s=>s.key===x.k);const filled=S.signals[x.k]&&Object.values(S.signals[x.k]).some(v=>v>0);return`<div onclick="ss({sigTab:'${x.k}'})" class="click" style="flex-shrink:0;padding:7px 10px;border-radius:10px;background:${filled?'rgba(52,212,112,0.1)':'#1a2640'};border:1px solid ${filled?'rgba(52,212,112,0.3)':'rgba(255,255,255,0.07)'};text-align:center"><div style="font-size:${x.k==='linkedin'?11:14}px;font-weight:${x.k==='linkedin'?900:400};color:${src.color}">${src.icon}</div><div style="font-size:9px;color:${filled?'#34d470':'#6e7a96'};margin-top:2px">${x.w}%</div></div>`}).join('')}</div><div class="card"><p style="font-size:11px;color:#6e7a96;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">Live ExecQ Index</p><div style="display:flex;align-items:flex-end;gap:12px;margin-bottom:14px"><span id="sig-score" class="score-badge" style="font-size:80px;font-weight:800;line-height:1;color:${lv.color}">0</span><div style="padding-bottom:8px;display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:600;color:${lv.color}">${lv.label}</span>${delta!==0?`<span style="font-size:12px;color:${delta>0?'#34d470':'#e05a7a'};font-weight:600">${delta>0?'▲ +'+delta:'▼ '+delta}</span>`:''}</div></div>${levelScale(lr.total,lv)}<div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">${SRCS.map((s,i)=>`<div style="display:flex;align-items:center;gap:8px"><span style="font-size:11px;color:#6e7a96;width:56px;font-weight:600">${s.label}</span>${bar(lr.scores[s.key]||0,s.color,(i*0.05).toFixed(2))}<span style="font-size:11px;font-weight:700;width:28px;text-align:right;color:${s.color}">${lr.scores[s.key]||0}</span></div>`).join('')}</div>${subRow(lr.scores)}</div><div style="display:flex;gap:6px;margin-bottom:16px;overflow-x:auto;padding-bottom:4px">${SRCS.map(s=>`<div onclick="ss({sigTab:'${s.key}'})" class="click" style="padding:8px 14px;border-radius:20px;background:${S.sigTab===s.key?s.color:'#1a2640'};border:1px solid ${S.sigTab===s.key?s.color:'rgba(255,255,255,0.08)'};font-size:12px;font-weight:700;color:${S.sigTab===s.key?'#0a0f1e':'#6e7a96'};white-space:nowrap;flex-shrink:0">${s.label}</div>`).join('')}</div><div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.07)"><div style="width:42px;height:42px;border-radius:12px;background:${src.iconBg};display:flex;align-items:center;justify-content:center;font-size:${S.sigTab==='linkedin'?16:20}px;font-weight:900;color:${src.color};flex-shrink:0">${src.icon}</div><div><p style="font-size:16px;font-weight:800;color:#eef0f7">${src.label}</p><p style="font-size:11px;color:#6e7a96;margin-top:2px">Weight: ${Math.round(W[S.sigTab]*100)}%</p></div>${S.sigTab==='linkedin'?'<button onclick="ss({showLI:true,liStep:2,liDraft:JSON.parse(JSON.stringify(DEF)),liEdited:{},liScanHadData:false})" style="background:rgba(10,102,194,0.12);border:1px solid rgba(10,102,194,0.35);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:700;color:#6b9ff5;cursor:pointer;white-space:nowrap">📋 Enter LinkedIn Stats</button>':''}</div>${{'linkedin':'<div style="background:rgba(10,102,194,0.06);border:1px solid rgba(10,102,194,0.15);border-radius:10px;padding:10px 12px;margin-bottom:14px"><p style="font-size:11px;font-weight:700;color:#6b9ff5;margin-bottom:4px">📍 Where to find this</p><p style="font-size:11px;color:#b0b8d0;line-height:1.6">Open LinkedIn, tap your profile photo. Follower count shows below your headline. Connections shown on your profile page.</p></div>','press':'<div style="background:rgba(236,191,90,0.06);border:1px solid rgba(236,191,90,0.15);border-radius:10px;padding:10px 12px;margin-bottom:14px"><p style="font-size:11px;font-weight:700;color:#ecbf5a;margin-bottom:4px">📍 How to count press mentions</p><p style="font-size:11px;color:#b0b8d0;line-height:1.6">Google your name + past year. Count articles where you were quoted, interviewed, or featured — trade pubs, local press, and industry blogs all count.</p></div>','speaking':'<div style="background:rgba(107,159,245,0.06);border:1px solid rgba(107,159,245,0.15);border-radius:10px;padding:10px 12px;margin-bottom:14px"><p style="font-size:11px;font-weight:700;color:#6b9ff5;margin-bottom:4px">📍 How to count speaking events</p><p style="font-size:11px;color:#b0b8d0;line-height:1.6">Count keynotes, panels, fireside chats, webinars, and virtual summits from the past 12 months. Check your calendar — virtual events count too.</p></div>','podcast':'<div style="background:rgba(41,196,176,0.06);border:1px solid rgba(41,196,176,0.15);border-radius:10px;padding:10px 12px;margin-bottom:14px"><p style="font-size:11px;font-weight:700;color:#29c4b0;margin-bottom:4px">📍 How to count podcast appearances</p><p style="font-size:11px;color:#b0b8d0;line-height:1.6">Guest appearances only (not shows you host). Search your name on Spotify or Apple Podcasts. Most hosts will share listener numbers if you ask.</p></div>','blog':'<div style="background:rgba(52,212,112,0.06);border:1px solid rgba(52,212,112,0.15);border-radius:10px;padding:10px 12px;margin-bottom:14px"><p style="font-size:11px;font-weight:700;color:#34d470;margin-bottom:4px">📍 What counts as published content</p><p style="font-size:11px;color:#b0b8d0;line-height:1.6">LinkedIn articles, Medium posts, newsletters, Forbes/HBR contributor pieces, guest blog posts. Long-form only — regular LinkedIn status updates do not count.</p></div>','board':'<div style="background:rgba(224,90,122,0.06);border:1px solid rgba(224,90,122,0.15);border-radius:10px;padding:10px 12px;margin-bottom:14px"><p style="font-size:11px;font-weight:700;color:#e05a7a;margin-bottom:4px">📍 What counts as a board role</p><p style="font-size:11px;color:#b0b8d0;line-height:1.6">Active seats only: corporate boards, nonprofit boards, startup advisory boards, university councils. Informal mentoring relationships do not count.</p></div>'}[S.sigTab]||''}${fields.map(f=>{const ed=S.sigEdited[S.sigTab+'_'+f.key];return`<div class="ig"><label class="lbl">${f.label}</label><p class="hint">${f.hint}</p><input type="number" value="${S.sigDraft[S.sigTab][f.key]||''}" step="${f.step||1}" min="0" max="${f.max}" style="${ed?'background:rgba(236,191,90,0.04);border:1px solid rgba(236,191,90,0.4)':''}" onchange="const d=JSON.parse(JSON.stringify(S.sigDraft));d['${S.sigTab}']['${f.key}']=parseFloat(this.value)||0;const e={...S.sigEdited};e['${S.sigTab}_${f.key}']=true;ss({sigDraft:d,sigEdited:e})"></div>`}).join('')}</div><button class="btn btn-gold" onclick="const res=calcIndex(S.sigDraft);const now=new Date();const mo=now.toLocaleString('default',{month:'short'});const hist=[...(S.scoreHistory||[])];if(!hist.length||hist[hist.length-1].month!==mo){hist.push({month:mo,total:res.total});}if(hist.length>12)hist.shift();ss({signals:JSON.parse(JSON.stringify(S.sigDraft)),indexResult:res,sigSaved:true,scoreHistory:hist});setTimeout(()=>{ss({sigSaved:false});saveUserData();},100)">Save & Update My Index →</button><button class="btn btn-ghost" onclick="ss({sigDraft:JSON.parse(JSON.stringify(S.signals)),sigEdited:{}})">Reset to Saved</button></div>`;}
 function renderRoadmap(){const score=S.indexResult?.total??0;const lv=getLevel(score);const next=score<65?65:score<80?80:score<85?85:score<95?95:100;const ms=[{s:score>=65?'done':'later',range:'Index 0–64',title:'Getting Started',tasks:['Build LinkedIn presence','Share insights publicly']},{s:score>=80?'done':score>=65?'now':'later',range:'Index 65–79',title:'Strengthen Foundation',tasks:['Attend key industry meetups','Start a weekly posting habit']},{s:score>=85?'done':score>=80?'now':'later',range:'Index 80–84',title:'Get Noticed',tasks:['Contribute to industry press','Land first major podcast']},{s:score>=95?'done':score>=85?'now':'later',range:'Index 85–94',title:'Build Industry Authority',tasks:['Keynote at flagship event','Grow advisory network']},{s:score>=95?'now':'later',range:'Index 95–100',title:'Board-Level Influence',tasks:['Secure first board seat']}];return`<div class="app-body"><div class="top-bar">${logo()}</div><p style="font-size:24px;font-weight:700;color:#eef0f7">Your Roadmap</p><p style="font-size:14px;color:#6e7a96;margin-top:4px;margin-bottom:16px">Current: <span style="color:${lv.color}">${lv.label}</span></p><div class="card"><p style="font-size:13px;font-weight:700;color:${lv.color};margin-bottom:4px">⭐ ${lv.label}</p><p style="font-size:15px;font-weight:700;color:#eef0f7;margin-bottom:10px">ExecQ Index: ${score}</p><div style="height:7px;background:#1f2d4a;border-radius:4px;margin-bottom:6px;overflow:hidden"><div data-bar="${score}" style="height:100%;border-radius:4px;background:${lv.color};width:0%"></div></div><div style="display:flex;justify-content:space-between"><span style="font-size:10px;color:#6e7a96">Current: ${score}</span><span style="font-size:10px;color:#6e7a96">Next: ${next}</span></div></div><p class="stitle">YOUR PROGRESSION</p>${ms.map((m,i)=>`<div style="display:flex;gap:12px;margin-bottom:10px"><div style="display:flex;flex-direction:column;align-items:center;padding-top:3px"><div style="width:22px;height:22px;border-radius:7px;background:${m.s==='done'?'#34d470':m.s==='now'?'#ecbf5a':'#1f2d4a'};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:${m.s==='later'?'#6e7a96':'#0a0f1e'};flex-shrink:0">${m.s==='done'?'✓':m.s==='now'?'→':'›'}</div>${i<ms.length-1?'<div style="width:1.5px;flex:1;min-height:16px;background:rgba(255,255,255,0.08);margin-top:4px"></div>':''}</div><div style="flex:1;background:${m.s==='now'?'rgba(212,168,67,0.04)':'#1a2640'};border-radius:12px;padding:12px;border:1px solid ${m.s==='now'?'rgba(212,168,67,0.3)':'rgba(255,255,255,0.07)'}"><p style="font-size:9px;font-weight:600;color:#6e7a96;margin-bottom:3px">${m.range}</p><p style="font-size:13px;font-weight:700;color:#eef0f7;margin-bottom:6px">${m.title}</p>${m.tasks.map(t=>`<p style="font-size:11px;color:#6e7a96;line-height:1.6">○ ${t}</p>`).join('')}</div></div>`).join('')}</div>`;}
 async function fetchOpps(){ss({oppsLoading:true,opps:[],oppsError:null,oppsExpanded:{}});const{ud,indexResult:ir}=S;const score=ir?.total??0;const scores=ir?.scores??{};const lv=getLevel(score);const sorted=Object.entries(scores).sort((a,b)=>a[1]-b[1]);const weakest=sorted.slice(0,3).map(([k])=>k);const goalMap={influence:'growing LinkedIn presence and thought leadership',speaking:'landing keynote and panel speaking roles',board:'securing board and advisory positions',network:'building a high-value executive network',content:'amplifying content reach and thought leadership'};const goalDesc=(ud.goals||[]).map(g=>goalMap[g]||g).join('; ');const TODAY_STR=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});const prompt=`You are an elite executive momentum analyst. Generate a personalized opportunity set.
-
+ 
 PROFILE: Name: ${ud.name||'Executive'}, Title: ${ud.title||'Senior Leader'}, Industry: ${ud.industry||'Technology'}, Expertise: ${ud.expertise||'Leadership'}, Goals: ${goalDesc||'Build influence'}, ExecQ Index: ${score}/100 (${lv.label}), Weakest signals: ${weakest.join(', ')}, Date: ${TODAY_STR} (current year is 2026, do NOT reference any 2024 or 2025 events — only upcoming 2026/2027 opportunities)
-
+ 
 Generate exactly 8 opportunities across THREE layers:
-
+ 
 LAYER 1 "now" (3 opps): Time-sensitive with REAL deadlines in next 4-8 weeks. Real named conferences with open CFPs, podcasts actively booking, publications with open submissions, award nominations closing soon. Include specific deadline dates.
-
+ 
 LAYER 2 "roi" (3 opps): Highest-leverage moves for this executive's weakest signals vs peers. Target weakest signals, explain specific index gain possible.
-
+ 
 LAYER 3 "quick" (2 opps): Low-effort actions completable under 2 hours that immediately move score or visibility.
-
+ 
 Each opp must have: layer("now"|"roi"|"quick"), type(Podcast|Speaking|Press|Content|Board|Community), typeColor(teal|amber|blue|green|purple|coral), title, org, audience, why(2 sentences), action(exact next step with URL if possible), goal(influence|speaking|board|network|content), match(60-99), effort(low|medium|high), deadline(specific date if layer=now else null), signalTarget(linkedin|press|speaking|podcast|blog|board), indexGain(estimated pts 5-25).
-
+ 
 Respond ONLY with a JSON array, no markdown.`;
 try{const r=await fetch('/api/claude',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:5000,messages:[{role:'user',content:prompt}]})});const data=await r.json();if(data.error){ss({oppsLoading:false,oppsError:'API: '+data.error.message});return;}const text=data.content?.find(b=>b.type==='text')?.text||'';const opps=JSON.parse(text.replace(/```json|```/g,'').trim());ss({oppsLoading:false,opps:opps,oppsSetup:true});}catch(e){ss({oppsLoading:false,oppsError:'Error: '+e.message});}}
 const OC={teal:{bg:'rgba(41,196,176,0.10)',border:'rgba(41,196,176,0.25)',text:'#29c4b0'},amber:{bg:'rgba(236,191,90,0.12)',border:'rgba(236,191,90,0.25)',text:'#ecbf5a'},blue:{bg:'rgba(107,159,245,0.10)',border:'rgba(107,159,245,0.25)',text:'#6b9ff5'},green:{bg:'rgba(52,212,112,0.10)',border:'rgba(52,212,112,0.25)',text:'#34d470'},purple:{bg:'rgba(150,120,240,0.10)',border:'rgba(150,120,240,0.25)',text:'#a08af0'},coral:{bg:'rgba(224,90,122,0.10)',border:'rgba(224,90,122,0.25)',text:'#e05a7a'}};
@@ -765,7 +765,7 @@ function renderProfile(){
   const hist=rawHist.length>0?[...rawHist.slice(-5),{month:'Now',total:score||rawHist[rawHist.length-1].total}]:HIST;
   const delta=hist[hist.length-1].total-hist[0].total;
   const initials=(ud.name||'EQ').slice(0,2).toUpperCase();
-
+ 
   function renderHistory(){
     return '<div>'
       +'<div style="display:flex;background:#1a2640;border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.07)">'
@@ -774,7 +774,7 @@ function renderProfile(){
       +hist.map((d,i)=>{const prev=i>0?hist[i-1].total:d.total;const diff=d.total-prev;return'<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:11px;color:#6e7a96;width:32px;font-weight:600">'+d.month+'</span><div style="flex:1;height:5px;background:#1f2d4a;border-radius:3px;overflow:hidden"><div data-bar="'+d.total+'" data-delay="'+(i*0.06).toFixed(2)+'" style="height:100%;border-radius:3px;background:'+lv.color+';width:0%"></div></div><span style="font-size:11px;font-weight:700;color:#eef0f7;width:24px;text-align:right">'+d.total+'</span><span style="font-size:10px;font-weight:600;width:28px;text-align:right;color:'+(i===0?'#6e7a96':diff>=0?'#34d470':'#e05a7a')+'">'+(i===0?'—':diff>=0?'+'+diff:diff)+'</span></div>';}).join('')
       +'</div>';
   }
-
+ 
   function renderProfileEdit(){
     return '<div>'
       +'<p class="stitle" style="margin-top:0">PERSONAL INFO</p>'
@@ -782,7 +782,7 @@ function renderProfile(){
       +'<button class="btn btn-gold" style="margin-top:12px" onclick="const d={...S.ud}; [\'name\',\'title\',\'company\',\'expertise\'].forEach(k=>{const el=document.getElementById(\'edit-\'+k);if(el)d[k]=el.value}); ss({ud:d})">Save Changes</button>'
       +'</div>';
   }
-
+ 
   function renderSettings(){
     const industry=ud.industry||'Other';
     // Build categorized source picker
@@ -794,7 +794,7 @@ function renderProfile(){
     if(industry==='Media & Marketing')relevantCats.push('Media & Marketing');
     if(industry==='Professional Services')relevantCats.push('Professional Services');
     if(industry==='Manufacturing')relevantCats.push('Manufacturing');
-
+ 
     let sourcePicker='';
     relevantCats.forEach(cat=>{
       const srcs=SOURCE_CATS[cat];
@@ -822,9 +822,9 @@ function renderProfile(){
         }).join('')
         +'</div></div>';
     });
-
+ 
     const customList=(S.customSources||[]).map((s,i)=>'<div style="background:#1a2640;border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:8px;margin-bottom:6px;border:1px solid rgba(255,255,255,0.07)"><div style="flex:1"><p style="font-size:12px;font-weight:600;color:#eef0f7">'+s.name+'</p>'+(s.url?'<p style="font-size:10px;color:#3a4660;margin-top:1px">'+s.url+'</p>':'')+'</div><button onclick="const c=[...S.customSources];c.splice('+i+',1);ss({customSources:c})" style="background:rgba(224,90,122,0.1);border:1px solid rgba(224,90,122,0.2);border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;color:#e05a7a;cursor:pointer">Remove</button></div>').join('');
-
+ 
     return '<div>'
       +'<div style="background:#1a2640;border-radius:14px;border:1px solid rgba(255,255,255,0.07);overflow:hidden;margin-bottom:12px">'
       +'<div style="padding:14px"><p style="font-size:13px;font-weight:700;color:#eef0f7;margin-bottom:2px">Email</p><p style="font-size:11px;color:#6e7a96">'+(S.user?.email||'demo@execq.app')+'</p></div>'
@@ -841,12 +841,12 @@ function renderProfile(){
       +'<input type="text" id="src-name" placeholder="e.g. Axios Pro Rata"></div>'
       +'<div class="ig" style="margin-bottom:10px"><label class="lbl" style="margin-bottom:5px">URL (optional)</label>'
       +'<input type="text" id="src-url" placeholder="e.g. axios.com/pro"></div>'
-      +'<button onclick="(function(){const name=(S.customSourceInput||\'\').trim();if(!name)return;const c=[...(S.customSources||[])];c.push({name,url:(S.customSourceUrl||\'\').trim()});ss({customSources:c,customSourceInput:\'\',customSourceUrl:\'\'});saveUserData();})()" style="width:100%;background:rgba(236,191,90,0.1);border:1px solid rgba(236,191,90,0.25);border-radius:10px;padding:10px;font-size:13px;font-weight:700;color:#ecbf5a;cursor:pointer">+ Add Source</button>'
+      +'<button onclick="(function(){var ni=document.getElementById(\'src-name\');var ui=document.getElementById(\'src-url\');var name=(ni?ni.value:\'\').trim();if(!name)return;var c=[...(S.customSources||[])];c.push({name:name,url:(ui?ui.value:\'\').trim()});if(ni)ni.value=\'\';if(ui)ui.value=\'\';ss({customSources:c});saveUserData();})()" style="width:100%;background:rgba(236,191,90,0.1);border:1px solid rgba(236,191,90,0.25);border-radius:10px;padding:10px;font-size:13px;font-weight:700;color:#ecbf5a;cursor:pointer">+ Add Source</button>'
       +'</div>'
       +'<div onclick="SA.signOut().then(()=>ss({screen:\'splash\',user:null,indexResult:null,signals:JSON.parse(JSON.stringify(DEF)),ud:{name:\'\',title:\'\',company:\'\',industry:\'\',expertise:\'\',goals:[],shareEcosystem:true,partnerActivations:true,searchAlerts:false}}))" class="click" style="background:#1a2640;border-radius:14px;border:1px solid rgba(255,255,255,0.07);padding:14px"><p style="font-size:14px;font-weight:600;color:#6e7a96">Sign Out</p></div>'
       +'</div>';
   }
-
+ 
   return '<div class="app-body">'
     +'<div class="top-bar">'+logo()+'<div style="width:38px;height:38px;border-radius:10px;background:#1a2640;border:2px solid #ecbf5a;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#ecbf5a">'+initials+'</div></div>'
     +'<div style="background:#1a2640;border-radius:16px;padding:16px;margin-bottom:16px;display:flex;align-items:center;gap:16px;border:1px solid rgba(236,191,90,0.15)"><span id="prof-score" class="score-badge" style="font-size:52px;font-weight:800;line-height:1;color:'+lv.color+'">0</span><div style="flex:1"><p style="font-size:18px;font-weight:800;color:#eef0f7;margin-bottom:2px">'+(ud.name||'Your Name')+'</p><p style="font-size:12px;color:#6e7a96;margin-bottom:8px">'+(ud.title||'Your Title')+(ud.company?' · '+ud.company:'')+'</p><div style="border:1px solid '+lv.color+';border-radius:8px;padding:4px 8px;display:inline-block"><span style="font-size:11px;font-weight:700;color:'+lv.color+'">⭐ '+lv.label+'</span></div></div></div>'
@@ -865,21 +865,21 @@ function renderSim(){
   const simLv=getLevel(sim.total);
   const delta=sim.total-base;
   const baseScores=S.indexResult?.scores??{linkedin:0,press:0,speaking:0,podcast:0,blog:0,board:0};
-
+ 
   // Per-signal max values for sliders (matches SF field maxes)
   const MAXES={linkedin:{followers:50000,connections:5000,engagementRate:10},press:{mentionCount:50,avgOutletAuthority:100},speaking:{eventCount:20,avgEventTier:100},podcast:{appearanceCount:30,avgAudienceSize:100000},blog:{articleCount:40,avgPlatformAuthority:100},board:{roleCount:5}};
   const FIELD_LABELS={followers:'Followers',connections:'Connections',engagementRate:'Engagement %',mentionCount:'Press mentions',avgOutletAuthority:'Outlet prestige',eventCount:'Speaking events',avgEventTier:'Event prestige',appearanceCount:'Podcast appearances',avgAudienceSize:'Avg listeners',articleCount:'Articles published',avgPlatformAuthority:'Platform reach',roleCount:'Board roles'};
   const STEPS={followers:500,connections:100,engagementRate:0.1,mentionCount:1,avgOutletAuthority:1,eventCount:1,avgEventTier:1,appearanceCount:1,avgAudienceSize:1000,articleCount:1,avgPlatformAuthority:1,roleCount:1};
-
+ 
   function fmtVal(key,val){
     if(key==='followers'||key==='avgAudienceSize')return val>=1000?(val/1000).toFixed(val>=10000?0:1)+'k':String(val);
     if(key==='engagementRate')return val.toFixed(1)+'%';
     return String(val);
   }
-
+ 
   const deltaColor=delta>0?'#34d470':delta<0?'#e05a7a':'#6e7a96';
   const deltaLabel=delta>0?'+'+delta:delta===0?'No change':String(delta);
-
+ 
   // Build slider rows for each source
   function sliderSection(src){
     const fields=SF[src.key];
@@ -926,12 +926,12 @@ function renderSim(){
       }).join('')}
     </div>`;
   }
-
+ 
   return `<div class="app-body">
     <div class="top-bar">${logo()}</div>
     <p style="font-size:22px;font-weight:800;color:#eef0f7;margin-bottom:4px">Score Simulator 🎯</p>
     <p style="font-size:13px;color:#6e7a96;margin-bottom:16px;font-style:italic">Drag any slider to see how your index would change.</p>
-
+ 
     <!-- Score comparison card -->
     <div style="background:#1a2640;border-radius:16px;padding:16px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.08)">
       <div style="display:flex;align-items:stretch;gap:0">
@@ -959,16 +959,16 @@ function renderSim(){
         </div>
       </div>`:''}
     </div>
-
+ 
     ${delta!==0?`<!-- Level-up callout -->
     ${sim.total>=70&&base<70?`<div style="background:rgba(236,191,90,0.08);border:1px solid rgba(236,191,90,0.3);border-radius:12px;padding:14px;margin-bottom:14px;display:flex;align-items:center;gap:12px"><span style="font-size:24px">🏆</span><div><p style="font-size:13px;font-weight:700;color:#ecbf5a">You'd reach Board-Level Icon!</p><p style="font-size:11px;color:#b0b8d0">The top tier of the ExecQ Index.</p></div></div>`:''}
     ${sim.total>=55&&base<55?`<div style="background:rgba(107,159,245,0.08);border:1px solid rgba(107,159,245,0.3);border-radius:12px;padding:14px;margin-bottom:14px;display:flex;align-items:center;gap:12px"><span style="font-size:24px">⬆️</span><div><p style="font-size:13px;font-weight:700;color:#6b9ff5">You'd reach Industry Authority!</p><p style="font-size:11px;color:#b0b8d0">Top 15% of executives at your level.</p></div></div>`:''}
     ${sim.total>=40&&base<40?`<div style="background:rgba(52,212,112,0.08);border:1px solid rgba(52,212,112,0.3);border-radius:12px;padding:14px;margin-bottom:14px;display:flex;align-items:center;gap:12px"><span style="font-size:24px">🌟</span><div><p style="font-size:13px;font-weight:700;color:#34d470">You'd reach Rising Star!</p><p style="font-size:11px;color:#b0b8d0">Your brand is starting to work for you.</p></div></div>`:''}
     `:''}
-
+ 
     <!-- Signal sliders -->
     ${SRCS.map(src=>sliderSection(src)).join('')}
-
+ 
     <!-- Action buttons -->
     <div style="display:flex;gap:8px;margin-top:4px">
       <button class="btn btn-gold" style="flex:2;margin-bottom:0;padding:13px" onclick="switchTab('Signals')">Enter These Stats for Real →</button>
