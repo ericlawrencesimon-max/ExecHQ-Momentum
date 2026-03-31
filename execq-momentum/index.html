@@ -19,10 +19,10 @@
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230a0f1e'/><text y='.9em' font-size='60' x='50%' text-anchor='middle' dominant-baseline='middle' dy='0.1em'>⚡</text></svg>"><style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#1a2640;color:#eef0f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;display:flex;justify-content:center;min-height:100vh;min-height:-webkit-fill-available}
-#root{width:100%;max-width:430px;height:100vh;position:relative;background:#0a0f1e;display:flex;flex-direction:column;overflow:hidden}
+#root{width:100%;max-width:430px;height:100vh;position:relative;background:#1a2640;display:flex;flex-direction:column;overflow:hidden}
 .page{display:flex;flex-direction:column;height:100%;overflow:hidden}
 .page-body{flex:1;overflow-y:auto;padding:24px 24px 12px;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;justify-content:center}
-.page-foot{flex-shrink:0;padding:10px 24px 20px;background:#0a0f1e;border-top:1px solid rgba(255,255,255,0.06)}
+.page-foot{flex-shrink:0;padding:10px 24px 20px;background:#1a2640;border-top:1px solid rgba(255,255,255,0.06)}
 .app-body{flex:1;overflow-y:auto;padding:50px 20px 120px;padding-bottom:calc(120px + env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch}
 @keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -166,7 +166,7 @@ function renderSplash(){return`<div class="page"><div style="flex:1;display:flex
   ${[['🎯','Know exactly where you stand','Your ExecHQ Index scores your executive presence across 6 signals — vs. peers at your level'],['⚡','Act at the right moment','Live market signals tell you when now is the right time to make a move'],['🚀','Close the gap fast','Personalized opportunities, AI coaching, and content — all in one place']].map(([icon,title,desc])=>`<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:12px 14px;display:flex;align-items:flex-start;gap:12px;text-align:left"><span style="font-size:18px;flex-shrink:0;margin-top:1px">${icon}</span><div><p style="font-size:13px;font-weight:700;color:#eef0f7;margin-bottom:2px">${title}</p><p style="font-size:11px;color:#6e7a96;line-height:1.5">${desc}</p></div></div>`).join('')}
 </div>
 </div>
-<div style="flex-shrink:0;padding:12px 24px 24px;background:#0a0f1e;border-top:1px solid rgba(255,255,255,0.06)">
+<div style="flex-shrink:0;padding:12px 24px 24px;background:#1a2640;border-top:1px solid rgba(255,255,255,0.06)">
   <button class="btn btn-gold" onclick="ss({screen:'beta_gate'})" style="font-size:15px;letter-spacing:0.3px">Request Access →</button>
   <button class="btn btn-ghost" onclick="AM='login';const _bv=_lsGet('execq_beta_verified');if(_bv){ss({screen:'auth'});}else{ss({screen:'beta_gate'})}">I already have an account</button>
   <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px">
@@ -472,7 +472,7 @@ function renderShareOverlay(){
     +'<div><p style="font-size:17px;font-weight:800;color:#eef0f7">Share Your ExecQ Card</p><p style="font-size:11px;color:#6e7a96">Download + post to LinkedIn</p></div>'
     +'<button onclick="ss({showShare:false})" style="margin-left:auto;background:rgba(255,255,255,0.06);border:none;border-radius:10px;width:32px;height:32px;font-size:16px;color:#6e7a96;cursor:pointer">\u2715</button>'
     +'</div>'
-    +'<div style="background:#0a0f1e;border-radius:14px;overflow:hidden;margin-bottom:16px;border:1px solid rgba(255,255,255,0.08)"><canvas id="share-canvas" style="width:100%;display:block"></canvas></div>'
+    +'<div style="background:#1a2640;border-radius:14px;overflow:hidden;margin-bottom:16px;border:1px solid rgba(255,255,255,0.08)"><canvas id="share-canvas" style="width:100%;display:block"></canvas></div>'
     +'<button onclick="(function(){var c=document.getElementById(\'share-canvas\');if(!c)return;var a=document.createElement(\'a\');a.download=\''+dlName+'\';a.href=c.toDataURL(\'image/png\');a.click()})()" style="width:100%;background:#ecbf5a;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:700;color:#0a0f1e;cursor:pointer;margin-bottom:10px;display:block">\u2b07\ufe0f Download Card</button>'
     +'<div style="background:#1a2640;border-radius:14px;padding:16px;margin-bottom:12px;border:1px solid rgba(10,102,194,0.25)">'
     +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">'
