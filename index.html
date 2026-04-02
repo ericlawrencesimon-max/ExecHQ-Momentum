@@ -196,7 +196,7 @@ function renderProf1(){
     +'<span style="font-size:16px">&#128274;</span>'
     +'<p style="font-size:11px;color:#6e7a96;line-height:1.6">Your name and title personalize your ExecQ Index. Never shared without your consent.</p>'
     +'</div>';
-  return obWrap(1,'Let\'s build your profile.','Takes 2 minutes — your index is calculated from this.',body,'Continue →','saveProf1()','');
+  return obWrap(1,'Let\'s build your profile.','Takes 2 minutes — calculated from your real data.',body,'Continue →','saveProf1()','');
 }
 function saveProf1(){const d=S.ud;d.name=document.getElementById('pn')?.value||'';d.title=document.getElementById('pt')?.value||'';d.company=document.getElementById('pc')?.value||'';ss({ud:d,screen:'prof4'});}
 function renderProf2(){
