@@ -251,7 +251,7 @@ function renderProf4(){
     +'<p style="font-size:13px;color:#6e7a96;margin-bottom:20px;font-style:italic">The fastest way to get a real score.</p>'
     +body+'</div>'
     +'<div class="page-foot"><button class="btn btn-gold" onclick="saveProf4()">Calculate My Score →</button>'
-    +'<button class="btn btn-ghost" onclick="ss({screen:\'prof5\'})">Skip — enter later</button>'
+    +'<button class="btn btn-ghost" onclick="startCalc()">Skip — enter later</button>'
     +'</div></div>';
 }
 function saveProf4(){const followers=parseInt(document.getElementById('li-followers')?.value||'0')||0;const connections=parseInt(document.getElementById('li-connections')?.value||'0')||0;if(followers>0||connections>0){const draft=JSON.parse(JSON.stringify(DEF));draft.linkedin.followers=followers;draft.linkedin.connections=Math.min(connections,5000);draft.linkedin.engagementRate=2.5;const res=calcIndex(draft);ss({signals:draft,sigDraft:JSON.parse(JSON.stringify(draft)),indexResult:res,screen:'calc'});if(S.user)SDB.set(S.user.uid,{...S.ud,signals:draft,indexResult:res});}else{startCalc();}}
