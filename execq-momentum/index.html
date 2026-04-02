@@ -486,7 +486,7 @@ function renderShareOverlay(){
 }
 
 async function fetchWeeklyReport(){
-  if(S.user&&S.user.uid==='demo'){setTimeout(function(){ss({weeklyReportLoading:false,week
+  if(S.user&&S.user.uid==='demo'){ss({weeklyReportLoading:false,weeklyReportOpen:true,weeklyReport:{summary:'Your momentum is building. LinkedIn is your strongest signal. Focus on Press and Speaking to accelerate.',actions:[{signal:'press',title:'Land a media placement',detail:'Pitch Forbes or Fast Company with a data-backed perspective.',impact:'high',timeframe:'30 days'},{signal:'speaking',title:'Secure a speaking slot',detail:'Submit to an upcoming industry conference.',impact:'high',timeframe:'60 days'},{signal:'linkedin',title:'Boost engagement rate',detail:'Post original insights 3x per week.',impact:'medium',timeframe:'ongoing'}],momentum:'building',nextMilestone:'Board-Level Icon at 70+'}});return;}
   ss({weeklyReportLoading:true,weeklyReport:null,weeklyReportError:null,weeklyReportOpen:true});
   const{ud,indexResult:ir,signals:sig,scoreHistory:hist}=S;
   const score=ir?.total??0;
