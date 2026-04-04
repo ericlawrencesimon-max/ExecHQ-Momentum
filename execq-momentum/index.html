@@ -296,13 +296,7 @@ function renderCalc(){
   const bm=S.calcResult?getBenchmark(score,S.ud.title,S.ud.industry):null;
   const name=S.ud.name?S.ud.name.split(' ')[0]:'';
 
-  function getScoreContext(s,level){
-    if(s>=70)return'You are operating at the top tier of executive presence. Your personal brand is a genuine career asset — and a competitive advantage most of your peers don\'t have.';
-    if(s>=55)return'You have real industry authority. Your presence is working — but there is meaningful upside if you close the gap on your weakest signals.';
-    if(s>=40)return'Your brand is visible and growing. A few targeted moves in the right channels could move you into the top tier faster than you think.';
-    if(s>=25)return'You have a foundation. The executives ahead of you are not operating in a different league — they are simply more consistently visible. That gap is closeable.';
-    if(s>=12)return'Your presence is underweight for your seniority level. The opportunity here is significant — executives who close this gap typically see career inflection points follow.';
-    return'Most executives at your level are more visible online. This is not a criticism — it is an opportunity. You can move faster from here than you think.';}
+  
   }
 
   return`<div class="page"><div class="page-body" style="justify-content:flex-start;padding-top:36px;overflow-y:auto">
