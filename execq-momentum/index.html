@@ -82,7 +82,7 @@ _lsSet('ExecHQ_session',u);    _lsSet('ExecHQ_session',u);
     _cu=u;_al.forEach(l=>l(u));return u;
   },
   signIn:async(e,p)=>{
-    const r=_lsGet('exechq_acct_'+btoa(e));
+    const r=_lsGet('exechq_acct_'+btoa(e))||_lsGet('ExecHQ_acct_'+btoa(e));
     if(!r)throw new Error('No account found.');
     if(r.p!==p)throw new Error('Incorrect password.');
     _lsSet('exechq_session',r.u);
