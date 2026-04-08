@@ -682,7 +682,7 @@ function removeCustomSource(i){var c=(S.customSources||[]).slice();c.splice(i,1)
 function renderProfile(){
   const{ud,indexResult:ir}=S;
   const score=ir?.total??0;
-  const lv=getLevel(index);
+  const lv=getLevel(score);
   const sec=S.profSec;
   const rawHist=S.scoreHistory&&S.scoreHistory.length>0?S.scoreHistory:HIST;
   const hist=rawHist.length>0?[...rawHist.slice(-5),{month:'Now',total:score||rawHist[rawHist.length-1].total}]:HIST;
