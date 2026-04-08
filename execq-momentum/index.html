@@ -330,7 +330,7 @@ function drawShareCard(){
   const CW=600,CH=340;
   canvas.width=CW;canvas.height=CH;
   const score=S.indexResult?.total??0;
-  const lv=getLevel(index);
+  const lv=getLevel(score);
   const ud=S.ud;
   const scores=S.indexResult?.scores??{};
   ctx.fillStyle='#0a0f1e';ctx.fillRect(0,0,CW,CH);
