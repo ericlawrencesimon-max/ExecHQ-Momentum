@@ -442,8 +442,9 @@ function renderCoachOverlay(){const{coachLoading:loading,coachData:cd,coachError
   function renderWeeklyReportOverlay(){
   const{weeklyReport:r,weeklyReportLoading:loading,weeklyReportError:err,ud,indexResult:ir}=S;
   const score=ir?.total??0;
-  const lv=getLevel(index);
-  const scoreHistory=S.scoreHistory||[];
+const lv=getLevel(score);
+
+    const scoreHistory=S.scoreHistory||[];
   const prev=scoreHistory.length>1?scoreHistory[scoreHistory.length-2].total:score;
   const delta=score-prev;
   const deltaColor=delta>0?'#34d470':delta<0?'#e05a7a':'#6e7a96';
