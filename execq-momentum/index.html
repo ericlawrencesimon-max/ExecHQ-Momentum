@@ -321,7 +321,7 @@ function levelScale(score,lv){return `<div style="margin-bottom:14px">
     }).join('')}
   </div>
   ${score<100?`<div style="margin-top:28px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between">
-    <div><p style="font-size:10px;color:#6e7a96;margin-bottom:2px">Next level</p><p style="font-size:12px;font-weight:700;color:#eef0f7">${[{min:70,max:100,label:'Board-Level Icon',color:'#ecbf5a'},{min:55,max:70,label:'Industry Authority',color:'#6b9ff5'},{min:40,max:55,label:'Rising Star',color:'#34d470'},{min:25,max:40,label:'Influencer Level',color:'#29c4b0'},{min:12,max:25,label:'Building Momentum',color:'#b0b8d0'},{min:0,max:12,label:'Building Momentum',color:'#b0b8d0'}].find(l=>score<l.max&&score>=l.min-(l.min===0?0:0))?.label||'Board-Level Icon'}</p></div>
+    <div><p style="font-size:10px;color:#6e7a96;margin-bottom:2px">Next level</p><p style="font-size:12px;font-weight:700;color:#eef0f7">${[{min:70,max:100,label:'Board-Level Icon',color:'#ecbf5a'},{min:55,max:70,label:'Industry Authority',color:'#6b9ff5'},{min:40,max:55,label:'Rising Star',color:'#34d470'},{min:25,max:40,label:'Influencer Level',color:'#29c4b0'},{min:12,max:25,label:'Building Momentum',color:'#b0b8d0'},{min:0,max:12,label:'Getting Started',color:'#b0b8d0'}].find(l=>score<l.min)?.label||'Board-Level Icon'}</p></div>
     <div style="text-align:right"><p style="font-size:10px;color:#6e7a96;margin-bottom:2px">Points needed</p><p style="font-size:18px;font-weight:800;color:${lv.color}">+${[70,55,40,25,12,100].find(t=>t>score)-score}</p></div>
   </div>`:''}
 </div>`;}
