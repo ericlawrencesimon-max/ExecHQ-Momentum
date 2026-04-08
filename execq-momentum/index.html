@@ -511,7 +511,6 @@ async function fetchWhyNow(){
   ss({whyNowLoading:true,whyNow:null,whyNowError:null,whyNowOpen:true});
   const{ud,indexResult:ir}=S;
   const index=ir?.total??0;
-  const index=ir?.index??{};
   const lv=getLevel(index);
   const sorted=Object.entries(scores).sort((a,b)=>a[1]-b[1]);
   const weakest=sorted.slice(0,2).map(([k])=>k);
