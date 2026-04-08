@@ -419,7 +419,7 @@ async function fetchWeeklyReport(){
   const{ud,indexResult:ir,signals:sig,scoreHistory:hist}=S;
   const score=ir?.total??0;
   const scores=ir?.scores??{};
-  const lv=getLevel(index);
+  const lv=getLevel(score);
   const prev=hist&&hist.length>1?hist[hist.length-2].total:score;
   const delta=score-prev;
   const sorted=Object.entries(scores).sort((a,b)=>a[1]-b[1]);
