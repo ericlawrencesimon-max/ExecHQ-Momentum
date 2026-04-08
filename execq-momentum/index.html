@@ -516,6 +516,8 @@ async function fetchWhyNow(){
   const{ud,indexResult:ir}=S;
   const index=ir?.total??0;
   const lv=getLevel(index);
+  const scores=ir?.scores??{};
+
   const sorted=Object.entries(scores).sort((a,b)=>a[1]-b[1]);
   const weakest=sorted.slice(0,2).map(([k])=>k);
   const goalMap={influence:'building influence and thought leadership',speaking:'landing speaking roles',board:'securing board positions',network:'growing executive network',content:'amplifying content reach'};
