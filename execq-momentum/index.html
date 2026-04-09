@@ -910,7 +910,7 @@ function renderSim(){
     <p style="font-size:11px;color:#3a4660;text-align:center;margin-top:10px">Simulated scores don't affect your real ExecHQ Index</p>
   </div>`;
 }
-const TABS=[{id:'Home',icon:'⚡',lbl:'Home'},{id:'Briefing',icon:'☀️',lbl:'Daily'},{id:'Signals',icon:'📡',lbl:'Signals'},{id:'Roadmap',icon:'🗺',lbl:'Trajectory'}
+const TABS=[{id:'Home',icon:'⚡',lbl:'Home'},{id:'Briefing',icon:'☀️',lbl:'Intel'},{id:'Signals',icon:'📡',lbl:'Signals'},{id:'Roadmap',icon:'🗺',lbl:'Trajectory'}
 ,{id:'Opps',icon:'🚀',lbl:'Momentum'},{id:'Profile',icon:'👤',lbl:'Profile'}];
 function tabBar(){return`<div class="tab-bar" id="tab-bar">${TABS.map(t=>`<div class="tab${S.activeTab===t.id?' active':''}" onclick="switchTab('${t.id}')"><span class="tab-icon">${t.icon}</span><span class="tab-lbl${S.activeTab===t.id?' active':''}">${t.lbl}</span></div>`).join('')}</div>`;}
 function switchTab(t){ss({activeTab:t});setTimeout(()=>{const b=document.getElementById('tab-bar');if(b){const a=b.querySelector('.tab.active');if(a)a.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});}},60);}
