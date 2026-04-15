@@ -533,7 +533,8 @@ async function fetchWhyNow(){
   const goalDesc=(ud.goals||[]).map(g=>goalMap[g]||g).join(', ')||'building executive presence';
   const today=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
   const score=ir?.total??0;
-'Reference real dynamics in their industry right now, '+today+'.
+'Reference real dynamics in their industry in March 2026.
+
   PROFILE: Name: '+(ud.name||'Executive')+', Title: '+(ud.title||'Senior Leader')+', Industry: '+(ud.industry||'Technology')+', Goals: '+goalDesc+', ExecHQ Index: '+index+'/100 ('+lv.label+'), Weakest signals: '+weakest.join(' and ')+'\n\nAnalyze
  the CURRENT external environment (March 2026) and identify why RIGHT NOW is a significant moment for this executive to act on their personal brand. Be specific to their industry and role.\n\nRespond ONLY with this JSON structure:\n{\n  "verdict": "now"|"soon"|"watch",\n  "verdictLabel": "Act Now"|"Good Timing"|"Watch & Wait",\n  "urgencyReason": "1 sharp sentence explaining the timing verdict — specific, not generic",\n  "signals": [\n    {\n      "type": "industry"|"peer"|"content"|"opportunity",\n      "icon": "📈"|"👥"|"✍️"|"🎯",\n      "title": "Short signal title",\n      "detail": "2 sentences — what is happening right now and why it matters specifically for this executive\'s positioning",\n      "action": "One concrete thing to do about this signal in the next 7 days"\n    }\n  ],\n  "windowClose": "1 sentence on what changes if they wait 30-60 days — the cost of inaction",\n  "bestMove": "The single most time-sensitive action they should take this week, specific to their industry and goals"\n}\nGenerate exactly 3 signals. Make them feel like insider intelligence, not generic advice. Reference real dynamics in their industry in March 2026. No markdown, JSON only.';
   try{
