@@ -78,7 +78,7 @@ const SA={
     const existing=_lsGet('exechq_acct_'+btoa(e));
     if(existing)throw new Error('Account already exists.');
     const u={uid:'uid_'+Date.now(),email:e};
-_lsSet('ExecHQ_session',u);    _lsSet('ExecHQ_session',u);
+_lsSet('exechq_session',u);
     _cu=u;_al.forEach(l=>l(u));return u;
   },
   signIn:async(e,p)=>{
