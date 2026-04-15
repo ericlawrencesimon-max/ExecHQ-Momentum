@@ -91,7 +91,7 @@ _lsSet('exechq_session',u);
   signOut:async()=>{_lsDel('exechq_session');_cu=null;_al.forEach(l=>l(null));}
 };
 const SDB={
-  set:async(uid,d)=>{const existing=_lsGet('exechq_user_'+uid)||{};const merged={...existing,...d};_lsSet('ExecHQ_user_'+uid,merged);},
+set:async(uid,d)=>{const existing=_lsGet('exechq_user_'+uid)||{};const merged={...existing,...d};_lsSet('exechq_user_'+uid,merged);},
   get:async(uid)=>_lsGet('exechq_user_'+uid)||null
 };
 const W={linkedin:0.30,press:0.20,speaking:0.18,podcast:0.15,blog:0.10,board:0.07};
