@@ -212,7 +212,8 @@ function saveProfAspire(){const d=S.ud;d.careerObstacle=document.getElementById(
   return obWrap(2,'What\'s your industry?','Personalizes benchmarks and briefings for your world.',body,'Continue →','saveProf2()','');
 }
 function selInd(i){const d=S.ud;d.industry=i;ss({ud:d});}
-function saveProf2(){const d=S.ud;d.expertise=document.getElementById('pexp')?.value||'';ss({ud:d,screen:'prof3'});}
+function saveProf2(){const d=S.ud;d.expertise=document.getElementById('pexp')?.value||'';ss({ud:d,screen:'prof3'});if(S.user&&S.user.uid!=='demo')SDB.set(S.user.uid,{...d,onboardingStep:'prof3'});}
+
   function renderProf3(){
   const goals=[
     {id:'influence',e:'&#128227;',t:'Build My Influence',s:'Grow visibility on LinkedIn, podcasts & press'},
