@@ -656,8 +656,9 @@ function renderPostGenerator(){
   const{postFormat:fmt,postTone:tone,postResult:result,postLoading:loading,postError:err,postCopied:copied,postWeekCount:wc,ud}=S;
   const formats=[{id:'thought_leadership',label:'Thought Leadership',icon:'💡',desc:'Contrarian industry take'},{id:'personal_story',label:'Personal Story',icon:'📖',desc:'Lesson or turning point'},{id:'industry_insight',label:'Industry Insight',icon:'📊',desc:'Expert data-driven take'},{id:'hot_take',label:'Hot Take',icon:'🔥',desc:'Provocative, scroll-stopping'}];
   const tones=[{id:'professional',label:'Professional'},{id:'conversational',label:'Conversational'},{id:'bold',label:'Bold'}];
-  return '<div style="margin-top:24px;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px">'
-    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">'
+return '<div id="post-gen-anchor" style="margin-top:24px;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px">'
+
+  +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">'
     +'<div style="width:36px;height:36px;border-radius:10px;background:rgba(10,102,194,0.12);border:1px solid rgba(10,102,194,0.25);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#0a66c2;flex-shrink:0">in</div>'
     +'<div style="flex:1"><p style="font-size:15px;font-weight:800;color:#eef0f7">LinkedIn Post Generator</p><p style="font-size:11px;color:#6e7a96">AI-written posts in your voice · copy & paste to LinkedIn</p></div>'
     +(wc>0?'<div style="background:rgba(236,191,90,0.1);border:1px solid rgba(236,191,90,0.2);border-radius:20px;padding:4px 10px;display:flex;align-items:center;gap:5px"><span style="font-size:14px">⚡</span><span style="font-size:11px;font-weight:700;color:#ecbf5a">'+wc+' this week</span></div>':'')
