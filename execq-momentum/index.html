@@ -533,7 +533,6 @@ async function fetchWhyNow(){
   const goalMap={influence:'building influence and thought leadership',speaking:'landing speaking roles',board:'securing board positions',network:'growing executive network',content:'amplifying content reach'};
   const goalDesc=(ud.goals||[]).map(g=>goalMap[g]||g).join(', ')||'building executive presence';
   const today=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
-  const score=ir?.total??0;
 'Reference real dynamics in their industry in March 2026.
 
   PROFILE: Name: '+(ud.name||'Executive')+', Title: '+(ud.title||'Senior Leader')+', Industry: '+(ud.industry||'Technology')+', Goals: '+goalDesc+', ExecHQ Index: '+index+'/100 ('+lv.label+'), Weakest signals: '+weakest.join(' and ')+'\n\nAnalyze
