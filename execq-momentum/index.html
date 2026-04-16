@@ -482,7 +482,7 @@ const lv=getLevel(score);
     +'</div>'
     +'<p style="font-size:11px;color:#6e7a96;margin-bottom:20px;padding-left:56px">For '+( ud.name||'you')+' · '+( ud.title||'')+( ud.company?' · '+ud.company:'')+' </p>'
     +(loading?'<div style="text-align:center;padding:48px 0"><div class="spin" style="margin:0 auto"></div><p style="font-size:14px;color:#ecbf5a;font-weight:600;margin-top:16px">Preparing your brief...</p></div>':'')
-    +(err?'<div style="background:rgba(224,90,122,0.08);border:1px solid rgba(224,90,122,0.2);border-radius:12px;padding:16px"><p style="font-size:13px;color:#e05a7a">'+err+'</p></div>':'')
+    +(err?'<div style="background:rgba(224,90,122,0.08);border:1px solid rgba(224,90,122,0.2);border-radius:12px;padding:16px"><p style="font-size:13px;color:#e05a7a">'+err.replace(/API: /,'').replace(/5\d\d/,'Something went wrong on our end — please try again.').replace(/4\d\d/,'Request failed — please check your connection.')+'</p></div>':'')
     +(r&&!loading?
       // Index snapshot
       '<div style="background:#1a2640;border-radius:14px;padding:16px;margin-bottom:14px;border:1px solid rgba(255,255,255,0.08)">'
