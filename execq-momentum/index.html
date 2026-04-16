@@ -77,8 +77,9 @@ const SA={
     if(p.length<6)throw new Error('Password must be at least 6 characters.');
     const existing=_lsGet('exechq_acct_'+btoa(e));
     if(existing)throw new Error('Account already exists.');
-    const u={uid:'uid_'+Date.now(),email:e};
-_lsSet('exechq_session',u);
+ const u={uid:'uid_'+Date.now(),email:e};
+    _lsSet('exechq_acct_'+btoa(e),{u,p});
+    _lsSet('exechq_session',u);
     _cu=u;_al.forEach(l=>l(u));return u;
   },
   signIn:async(e,p)=>{
