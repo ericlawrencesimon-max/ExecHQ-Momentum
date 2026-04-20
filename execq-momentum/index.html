@@ -718,7 +718,7 @@ function renderProfile(){
   const score=ir?.total??0;
   const lv=getLevel(score);
   const sec=S.profSec;
-  const rawHist=S.scoreHistory&&S.scoreHistory.length>0?S.scoreHistory:HIST;
+  const rawHist=S.scoreHistory&&S.scoreHistory.length>0?S.scoreHistory:[];
   const hist=rawHist.length>0?[...rawHist.slice(-5),{month:'Now',total:score||rawHist[rawHist.length-1].total}]:HIST;
   const delta=hist[hist.length-1].total-hist[0].total;
   const initials=(ud.name||'EQ').slice(0,2).toUpperCase();
