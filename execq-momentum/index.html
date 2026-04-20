@@ -724,8 +724,8 @@ function renderProfile(){
   const initials=(ud.name||'EQ').slice(0,2).toUpperCase();
 
   function renderHistory(){
-    return '<div>'
-      +'<div style="display:flex;background:#1a2640;border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.07)">'
+    if(hist.length===0)return '<div style="background:#1a2640;border-radius:14px;padding:24px;text-align:center;border:1px solid rgba(255,255,255,0.07)"><p style="font-size:32px;margin-bottom:12px">📈</p><p style="font-size:14px;font-weight:700;color:#eef0f7;margin-bottom:6px">No history yet</p><p style="font-size:12px;color:#6e7a96;line-height:1.6">Your score history will appear here as you update your signals over time.</p></div>';
+return '<div>'
       +[{l:'6 mo. ago',v:hist[0].total,c:'#eef0f7'},{l:'Growth',v:(delta>=0?'+':'')+delta,c:delta>=0?'#34d470':'#e05a7a'},{l:'Today',v:hist[hist.length-1].total,c:lv.color}].map((s,i)=>'<div style="flex:1;text-align:center;border-left:'+(i>0?'1px solid rgba(255,255,255,0.07)':'none')+'"><p style="font-size:26px;font-weight:800;color:'+s.c+';line-height:1">'+s.v+'</p><p style="font-size:10px;color:#6e7a96;margin-top:3px">'+s.l+'</p></div>').join('')
       +'</div>'
       +hist.map((d,i)=>{const prev=i>0?hist[i-1].total:d.total;const diff=d.total-prev;return'<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:11px;color:#6e7a96;width:32px;font-weight:600">'+d.month+'</span><div style="flex:1;height:5px;background:#1f2d4a;border-radius:3px;overflow:hidden"><div data-bar="'+d.total+'" data-delay="'+(i*0.06).toFixed(2)+'" style="height:100%;border-radius:3px;background:'+lv.color+';width:0%"></div></div><span style="font-size:11px;font-weight:700;color:#eef0f7;width:24px;text-align:right">'+d.total+'</span><span style="font-size:10px;font-weight:600;width:28px;text-align:right;color:'+(i===0?'#6e7a96':diff>=0?'#34d470':'#e05a7a')+'">'+(i===0?'—':diff>=0?'+'+diff:diff)+'</span></div>';}).join('')
