@@ -817,7 +817,7 @@ return '<div>'
 }
 function renderSim(){
   // Initialize simDraft from current signals on first open
-  if(!S.simDraft){const d=JSON.parse(JSON.stringify(S.signals));ss({simDraft:d});return renderSim();}
+  ss({simDraft:JSON.parse(JSON.stringify(S.signals))});
   const base=S.indexResult?.total??0;
   const baseLv=getLevel(base);
   const sim=calcIndex(S.simDraft);
