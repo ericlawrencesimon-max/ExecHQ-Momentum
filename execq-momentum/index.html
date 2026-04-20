@@ -147,6 +147,7 @@ weeklyReport:null,weeklyReportLoading:false,weeklyReportError:null,weeklyReportO
 
 whyNow:null,whyNowLoading:false,whyNowError:null,whyNowOpen:false};
 function ss(u){Object.assign(S,u);render();setTimeout(animateBars,50);}
+function savePerspective(v){_lsSet('exechq_post_perspective_'+(S.user?S.user.uid:''),v);}
 function saveUserData(){if(S.user&&S.user.uid!=='demo'){SDB.set(S.user.uid,{...S.ud,aspiredRole:S.ud.aspiredRole||'',careerObstacle:S.ud.careerObstacle||'',successVision:S.ud.successVision||'',growthGoals:S.ud.growthGoals||'',signals:S.signals,indexResult:S.indexResult,scoreHistory:S.scoreHistory||[],customSources:S.customSources||[]});}}
 function enterDemo(){S.ud=JSON.parse(JSON.stringify(DEMO_UD));S.signals=JSON.parse(JSON.stringify(DEMO_SIGS));S.sigDraft=JSON.parse(JSON.stringify(DEMO_SIGS));S.indexResult=DEMO_IR;S.user={uid:'demo',email:'demo@ExecHQ.app'};S.briefSources=getDefaultSources(S.ud.industry||'Technology');ss({screen:'app',skelDone:false});}
 function animateCount(el,target,dur=750,instant=false){if(!el||target===0)return;if(instant||S._scoresSeen){el.textContent=target;return;}S._scoresSeen=true;const start=performance.now();const tick=now=>{const p=Math.min((now-start)/dur,1);const ease=1-Math.pow(1-p,3);el.textContent=Math.round(target*ease);if(p<1)requestAnimationFrame(tick);};requestAnimationFrame(tick);}
