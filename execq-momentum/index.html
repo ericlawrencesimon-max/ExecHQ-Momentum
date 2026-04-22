@@ -960,7 +960,7 @@ function renderSim(){
   </div>`;
 }
 const TABS=[{id:'Home',icon:'⚡',lbl:'Home'},{id:'Briefing',icon:'☀️',lbl:'Intel'},{id:'Signals',icon:'📡',lbl:'Signals'},{id:'Roadmap',icon:'🗺',lbl:'Trajectory'}
-,{id:'Opps',icon:'🚀',lbl:'Momentum'},{id:'Profile',icon:'👤',lbl:'Profile'}];
+,{id:'Opps',icon:'🚀',lbl:'Growth'},{id:'Profile',icon:'👤',lbl:'Profile'}];
 function tabBar(){return`<div class="tab-bar" id="tab-bar">${TABS.map(t=>`<div class="tab${S.activeTab===t.id?' active':''}" onclick="switchTab('${t.id}')"><span class="tab-icon">${t.icon}</span><span class="tab-lbl${S.activeTab===t.id?' active':''}">${t.lbl}</span></div>`).join('')}</div>`;}
 function switchTab(t){ss({activeTab:t});setTimeout(()=>{const b=document.getElementById('tab-bar');if(b){const a=b.querySelector('.tab.active');if(a)a.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});}},60);}
 function renderSkel(){return`<div class="app-body"><div class="top-bar">${logo()}</div><div class="skel" style="height:80px;width:60%;margin-bottom:8px"></div><div class="skel" style="height:14px;width:40%;margin-bottom:24px"></div><div class="card"><div class="skel" style="height:72px;width:50%;margin-bottom:12px"></div><div class="skel" style="height:8px;margin-bottom:6px"></div><div class="skel" style="height:8px;width:85%"></div></div></div>`;}
