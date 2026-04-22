@@ -457,7 +457,7 @@ async function fetchWeeklyReport(){
   const prev=hist&&hist.length>1?hist[hist.length-2].total:score;
   const delta=score-prev;
   const sorted=Object.entries(scores).sort((a,b)=>a[1]-b[1]);
-  const weakest=sorted.slice(0,2).map(([k,v])=>k);
+  const weakest=sorted.filter(([k])=>k!=='board').slice(0,2).map(([k,v])=>k);
   const strongest=sorted.slice(-1).map(([k,v])=>k);
   const W_LABELS={linkedin:'LinkedIn presence',press:'press & media coverage',speaking:'speaking engagements',podcast:'podcast appearances',blog:'published content',board:'board & advisory roles'};
  const prompt='You are a trusted executive mentor writing a concise weekly momentum brief. Your tone is warm, direct and energizing — like a world-class coach who sees potential and gives honest guidance without fear or judgment. You never use words like "risk", "danger", "burning", "critical gap", or any language that creates anxiety. You lead with strengths, identify one clear opportunity, and always leave the executive feeling capable and motivated.\n\nTHE MOST IMPORTANT CONTEXT — let this shape your assessment and recommendations:\n'
