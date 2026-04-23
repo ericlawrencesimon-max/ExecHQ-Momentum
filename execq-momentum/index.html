@@ -593,7 +593,9 @@ function renderWhyNowOverlay(){
     +'<button onclick="ss({whyNowOpen:false})" style="background:rgba(255,255,255,0.06);border:none;border-radius:10px;width:32px;height:32px;font-size:16px;color:#6e7a96;cursor:pointer">\u2715</button>'
     +'</div>'
     +'<p style="font-size:11px;color:#6e7a96;margin-bottom:20px;padding-left:56px">For '+(ud.name||'you')+' \u00b7 '+(ud.title||'')+( ud.industry?' \u00b7 '+ud.industry:'')+' </p>'
-    +(loading?'<div style="text-align:center;padding:48px 0"><div class="spin" style="margin:0 auto"></div><p style="font-size:14px;color:#ecbf5a;font-weight:600;margin-top:16px">Scanning the market...</p><p style="font-size:12px;color:#6e7a96;margin-top:6px">Analyzing industry signals for your role</p></div>':'')
+    +(loading?'<div style="text-align:center;padding:48px 0"><div class="spin" style="margin:0 auto"></div><p style="font-size:14px;color:#ecbf5a;font-weight:600;margin-top:16px">Scanning Live Market Signals...</p><p style="font-size:12px;color:#6e7a96;margin-top:8px">Analyzing real-time intelligence for your industry</p><div style="display:flex;flex-direction:column;gap:8px;margin-top:20px;text-align:left;max-width:280px;margin-left:auto;margin-right:auto">'
++[{icon:'📡',text:'Monitoring industry developments'},{icon:'📊',text:'Analyzing market timing signals'},{icon:'🎯',text:'Matching opportunities to your goals'},{icon:'⚡',text:'Building your timing verdict'}].map(s=>'<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;background:rgba(255,255,255,0.03)"><span style="font-size:14px">'+s.icon+'</span><p style="font-size:11px;color:#6e7a96">'+s.text+'...</p></div>').join('')
++'</div></div>':'')
 +(err?'<div style="background:rgba(224,90,122,0.08);border:1px solid rgba(224,90,122,0.2);border-radius:12px;padding:16px"><p style="font-size:13px;color:#e05a7a">'+err.replace(/API: /,'').replace(/5\d\d/,'Something went wrong on our end — please try again.').replace(/4\d\d/,'Request failed — please check your connection.')+'</p></div>':'')
 
     +(r&&!loading?
