@@ -550,7 +550,7 @@ const lv=getLevel(score);
     +'</div></div>';
 }
 
-async function fetchWhyNow(){
+async function fetchWhyNow(force=false){const cacheKey='exechq_whynow_'+(S.user?.uid||'');if(!force){try{const cached=_lsGet(cacheKey);if(cached&&cached.data&&cached.ts&&(Date.now()-cached.ts)<86400000){ss({whyNowLoading:false,whyNow:cached.data,whyNowOpen:true});return;}}catch(e){}}
   ss({whyNowLoading:true,whyNow:null,whyNowError:null,whyNowOpen:true});
   const{ud,indexResult:ir}=S;
   const index=ir?.total??0;
