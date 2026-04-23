@@ -572,7 +572,7 @@ const prompt='You are an elite executive intelligence analyst with real-time mar
     if(data.error){ss({whyNowLoading:false,whyNowError:'API: '+data.error.message});return;}
     const text=(data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
     const clean=text.replace(/```json|```/g,'').trim();const start=clean.indexOf('{');const end=clean.lastIndexOf('}');const parsed=JSON.parse(clean.slice(start,end+1));
-    ss({whyNowLoading:false,whyNow:parsed});
+    try{_lsSet(cacheKey,{data:parsed,ts:Date.now()});}catch(e){}ss({whyNowLoading:false,whyNow:parsed});
   }catch(e){ss({whyNowLoading:false,whyNowError:'Error: '+e.message});}
 }
 function renderWhyNowOverlay(){
