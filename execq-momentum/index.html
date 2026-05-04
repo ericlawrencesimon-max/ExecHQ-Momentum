@@ -216,7 +216,8 @@ function renderProfAspire(){return'<div class="page"><div class="page-body" styl
 function saveProfAspire(){const d=S.ud;d.careerObstacle=document.getElementById('pa-obstacle')?.value||'';d.successVision=document.getElementById('pa-success')?.value||'';d.growthGoals=document.getElementById('pa-growth')?.value||'';d.leadershipContext=document.getElementById('pa-leadership')?.value||'';ss({ud:d,screen:'prof2'});
 if(S.user&&S.user.uid!=='demo')SDB.set(S.user.uid,{...d,onboardingStep:'prof2'});}
 
-  function saveProf1(){const d=S.ud;d.name=document.getElementById('pn')?.value||'';d.title=document.getElementById('pt')?.value||'';d.aspiredRole=document.getElementById('pa')?.value||'';d.company=document.getElementById('pc')?.value||'';ss({ud:d,screen:'prof_aspire'});if(S.user&&S.user.uid!=='demo')SDB.set(S.user.uid,{...d,onboardingStep:'prof_aspire'});}
+  function saveProf1(){const d=S.ud;d.name=document.getElementById('pn')?.value||'';d.title=document.getElementById('pt')?.value||'';d.aspiredRole=document.getElementById('pa')?.value||'';d.company=document.getElementById('pc')?.value||'';d.inTransition=document.getElementById('p-transition')?.checked||false;ss({ud:d,screen:'prof_aspire'});
+if(S.user&&S.user.uid!=='demo')SDB.set(S.user.uid,{...d,onboardingStep:'prof_aspire'});}
   
   function renderProf2(){
   const inds=['Technology','Financial Services','Healthcare','Retail & Consumer','Media & Marketing','Professional Services','Manufacturing','Other'];
