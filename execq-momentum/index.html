@@ -343,7 +343,7 @@ function levelScale(score,lv){return `<div style="margin-bottom:14px">
     <div style="position:absolute;top:50%;left:${Math.min(97,Math.max(3,score))}%;transform:translate(-50%,-50%);width:16px;height:16px;border-radius:50%;background:${lv.color};border:2px solid #0a0f1e;box-shadow:0 0 0 3px ${lv.color}33;z-index:2"></div>
   </div>
   <div style="display:flex;position:relative;height:32px">
-    ${[{s:0,l:'Getting Started',c:'#6e7a96',sc:0},{s:12,l:'Building',c:'#b0b8d0',sc:12},{s:25,l:'Influencer',c:'#29c4b0',sc:25},{s:40,l:'Rising Star',c:'#34d470',sc:40},{s:55,l:'Authority',c:'#6b9ff5',sc:55},{s:70,l:'Board',c:'#ecbf5a',sc:70}].map((t,i)=>{
+    ${[{s:0,l:'Getting Started',c:'#6e7a96',sc:0},{s:12,l:'Building',c:'#b0b8d0',sc:12},{s:25,l:'Influencer',c:'#29c4b0',sc:25},{s:40,l:'Rising Star',c:'#34d470',sc:40},{s:55,l:'Authority',c:'#6b9ff5',sc:55},{s:70,l:'Executive',c:'#ecbf5a',sc:70}].map((t,i)=>{
       const active=score>=t.s&&(i===5||score<[0,12,25,40,55,70,101][i+1]);
       const passed=score>t.s;
       const color=active?t.c:(passed?t.c+'99':'#2a3550');
