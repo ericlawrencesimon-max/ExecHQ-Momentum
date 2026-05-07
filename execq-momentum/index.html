@@ -797,7 +797,8 @@ return '<div>'
       +'</div>';
   }
 
-  function renderProfileEdit(){
+  function saveProfileEdit(){const d={...S.ud};['name','title','aspiredRole','company','expertise'].forEach(k=>{const el=document.getElementById('edit-'+k);if(el)d[k]=el.value;});d.careerObstacle=document.getElementById('edit-obstacle')?.value||'';d.successVision=document.getElementById('edit-success')?.value||'';d.growthGoals=document.getElementById('edit-growth')?.value||'';d.leadershipContext=document.getElementById('edit-leadership')?.value||'';d.inTransition=document.getElementById('edit-transition')?.checked||false;ss({ud:d});saveUserData();}
+function renderProfileEdit(){
     return `<div>`
       +'<p class="stitle" style="margin-top:0">PERSONAL INFO</p>'
     +(()=>{const fields=[{l:'First Name',k:'name',p:'e.g. Alex'},{l:'Job Title',k:'title',p:'e.g. SVP of Marketing'},{l:'Aspired Role',k:'aspiredRole',p:'e.g. Chief Marketing Officer'},{l:'Company (optional)',k:'company',p:'e.g. TechVanguard'},{l:'Expertise',k:'expertise',p:'e.g. AI in Marketing'}
