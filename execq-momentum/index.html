@@ -798,7 +798,7 @@ return '<div>'
   }
 
   function renderProfileEdit(){
-    return '<div>'
+    return `<div>`
       +'<p class="stitle" style="margin-top:0">PERSONAL INFO</p>'
     +(()=>{const fields=[{l:'First Name',k:'name',p:'e.g. Alex'},{l:'Job Title',k:'title',p:'e.g. SVP of Marketing'},{l:'Aspired Role',k:'aspiredRole',p:'e.g. Chief Marketing Officer'},{l:'Company (optional)',k:'company',p:'e.g. TechVanguard'},{l:"Expertise",k:"expertise",p:"e.g. AI in Marketing"}
 ];return fields.map(f=>{const v=ud[f.k]||'';return '<div class="ig"><label class="lbl">'+f.l+'</label><input type="text" id="edit-'+f.k+'" value="'+v+'" placeholder="'+f.p+'"></div>';}).join('');})()+'<p class="stitle">YOUR GROWTH CONTEXT</p><div class="ig"><label class="lbl">Biggest career obstacle right now</label><textarea id="edit-obstacle" placeholder="e.g. Not being considered for board roles despite my experience" style="width:100%;background:#1a2640;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px 14px;font-size:13px;color:#eef0f7;outline:none;min-height:72px;resize:none;font-family:inherit;box-sizing:border-box">'+(ud.careerObstacle||"")+'</textarea>
