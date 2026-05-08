@@ -199,7 +199,8 @@ function renderProf1(){
  const body='<div style="display:flex;flex-direction:column;gap:12px">'
     +'<div style="background:rgba(236,191,90,0.05);border:1px solid rgba(236,191,90,0.15);border-radius:12px;padding:12px 14px;margin-bottom:4px;display:flex;gap:8px;align-items:flex-start"><span style="font-size:16px;flex-shrink:0">🎯</span><p style="font-size:12px;color:#ecbf5a;line-height:1.6">Everything in ExecHQ — your coaching, briefings, and opportunities — will be oriented toward your aspired role. Start here.</p></div>'
     +'<div class="ig" style="margin-bottom:0"><label class="lbl">Where do you want to be? <span style="font-size:9px;color:#ecbf5a;font-weight:400;text-transform:none;letter-spacing:0">Your aspired role</span></label>'
-    +'<input type="text" id="pa" value="'+(d.aspiredRole||'')+'" placeholder="e.g. Chief Marketing Officer" style="font-size:16px"></div>'
+    +'<input type="text" id="pa" value="'+(d.aspiredRole||'')+'" placeholder="e.g. Chief Marketing Officer" style="font-size:16px"><p onclick="openDirectionFinder()" style="font-size:11px;color:#6b9ff5;cursor:pointer;margin-top:6px;font-style:italic">Not sure yet? Let me help you find your direction →</p>
+</div>'
     +'<div class="ig" style="margin-bottom:0"><label class="lbl">Your First Name</label>'
     +'<input type="text" id="pn" value="'+(d.name||'')+'" placeholder="e.g. Alex"></div>'
  +'<div class="ig" style="margin-bottom:0"><label class="lbl">Current Title <span style="font-size:9px;color:#6e7a96;font-weight:400;text-transform:none;letter-spacing:0">(leave blank if in transition)</span></label>'
