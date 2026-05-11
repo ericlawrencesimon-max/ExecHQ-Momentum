@@ -250,7 +250,7 @@ function saveProf2(){const d=S.ud;d.expertise=document.getElementById('pexp')?.v
     body+='<div onclick="togGoal(this.getAttribute(\'data-gid\'))" data-gid="'+g.id+'" class="click" style="background:'+(on?'rgba(236,191,90,0.05)':'#1a2640')+';border-radius:14px;padding:14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;border:1px solid '+(on?'rgba(236,191,90,0.35)':'rgba(255,255,255,0.07)')+'"><span style="font-size:22px;width:36px;text-align:center;flex-shrink:0">'+g.e+'</span><div style="flex:1"><p style="font-size:13px;font-weight:700;color:#eef0f7;margin-bottom:2px">'+g.t+'</p><p style="font-size:11px;color:#6e7a96">'+g.s+'</p></div><div style="width:26px;height:26px;border-radius:8px;background:'+(on?'#ecbf5a':'#1f2d4a')+';display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:'+(on?'#0a0f1e':'#3a4660')+';flex-shrink:0">'+(on?'&#10003;':'+'  )+'</div></div>';
   });
   body+=(selected>0?'<p style="font-size:11px;color:#ecbf5a;text-align:center;margin-top:6px">'+selected+' goal'+(selected===1?'':'s')+' selected &#10003;</p>':'<p style="font-size:11px;color:#3a4660;text-align:center;margin-top:6px">Select at least one to continue</p>');
-  return obWrap(3,'What would you like to strengthen?','Choose all that feel right — update these any time.',body,'Continue →','ss({screen:\'prof4\'})','');
+  return obWrap(3,'What would you like to strengthen?','Choose your focus areas — these shape your coaching, opportunities and briefings.',body,'Continue →','ss({screen:\'prof4\'})','');
 }
 function togGoal(id){const d=S.ud;const c=d.goals||[];d.goals=c.includes(id)?c.filter(g=>g!==id):[...c,id];ss({ud:d});}
 function renderProf4(){
