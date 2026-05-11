@@ -787,7 +787,7 @@ function renderProfile(){
   const sec=S.profSec;
   const rawHist=S.scoreHistory&&S.scoreHistory.length>0?S.scoreHistory:[];
   const hist=rawHist.length>0?[...rawHist.slice(-5),{month:'Now',total:score||rawHist[rawHist.length-1].total}]:[];
-  const delta=hist[hist.length-1].total-hist[0].total;
+  const delta=hist.length>1?hist[hist.length-1].total-hist[0].total:0;
   const initials=(ud.name||'EQ').slice(0,2).toUpperCase();
 
   function renderHistory(){
