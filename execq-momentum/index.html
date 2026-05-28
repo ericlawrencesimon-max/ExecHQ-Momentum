@@ -799,7 +799,7 @@ function renderProfile(){
   const initials=(ud.name||'EQ').slice(0,2).toUpperCase();
 
   function renderHistory(){
-    if(hist.length===0)return '<div style="background:#1a2640;border-radius:14px;padding:24px;text-align:center;border:1px solid rgba(255,255,255,0.07)"><p style="font-size:32px;margin-bottom:12px">📈</p><p style="font-size:14px;font-weight:700;color:#eef0f7;margin-bottom:6px">No history yet</p><p style="font-size:12px;color:#6e7a96;line-height:1.6">Your score history will appear here as you update your signals over time.</p></div>';
+    if(hist.length===0)return '<div style="background:#1a2640;border-radius:14px;padding:24px;text-align:center;border:1px solid rgba(255,255,255,0.07)"><p style="font-size:32px;margin-bottom:12px">📈</p><p style="font-size:14px;font-weight:700;color:#eef0f7;margin-bottom:6px">No history yet</p><p style="font-size:12px;color:#6e7a96;line-height:1.6">Your score progress history will appear here as you update your signals over time.</p></div>';
 return '<div>'
       +[{l:'6 mo. ago',v:hist[0].total,c:'#eef0f7'},{l:'Growth',v:(delta>=0?'+':'')+delta,c:delta>=0?'#34d470':'#e05a7a'},{l:'Today',v:hist[hist.length-1].total,c:lv.color}].map((s,i)=>'<div style="flex:1;text-align:center;border-left:'+(i>0?'1px solid rgba(255,255,255,0.07)':'none')+'"><p style="font-size:26px;font-weight:800;color:'+s.c+';line-height:1">'+s.v+'</p><p style="font-size:10px;color:#6e7a96;margin-top:3px">'+s.l+'</p></div>').join('')
       +'</div>'
