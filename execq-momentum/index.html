@@ -153,7 +153,7 @@ weeklyReport:null,weeklyReportLoading:false,weeklyReportError:null,weeklyReportO
 
 
 whyNow:null,whyNowLoading:false,whyNowError:null,whyNowOpen:false};
-function ss(u){const el=document.querySelector('.app-body');const scrollTop=el?el.scrollTop:0;Object.assign(S,u);render();setTimeout(()=>{animateBars();const el2=document.querySelector('.app-body');if(el2)el2.scrollTop=scrollTop;},10);}
+function ss(u){try{const el=document.querySelector('.app-body');const scrollTop=el?el.scrollTop:0;Object.assign(S,u);console.log('SS called, screen:',S.screen);render();}catch(err){console.log('SS ERROR',err.message,err.stack);}}
 function savePerspective(v){_lsSet('exechq_post_perspective_'+(S.user?S.user.uid:''),v);}
 function saveUserData(){if(S.user&&S.user.uid!=='demo'){SDB.set(S.user.uid,{...S.ud,aspiredRole:S.ud.aspiredRole||'',careerObstacle:S.ud.careerObstacle||'',successVision:S.ud.successVision||'',growthGoals:S.ud.growthGoals||'',leadershipContext:S.ud.leadershipContext||'',inTransition:S.ud.inTransition||false,signals:S.signals
 ,indexResult:S.indexResult,scoreHistory:S.scoreHistory||[],customSources:S.customSources||[]});}}
