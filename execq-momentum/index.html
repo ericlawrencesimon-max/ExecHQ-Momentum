@@ -1043,7 +1043,7 @@ const lastLogin=_lsGet('exechq_last_login_'+(user.uid||''));const now=Date.now()
 
   if(isFirstVisit){setTimeout(()=>openCoach(),1200);}
 }else ss({screen:S.screen==='loading'?'splash':S.screen,user});}else if(!user){const bv=_lsGet('exechq_beta_verified');
-ss({screen:bv?'splash':'beta_gate',betaVerified:!!bv,user:null});}});
+ss({screen:bv?'splash':'beta_gate',betaVerified:!!bv,user:null});}catch(e){}});
 setTimeout(()=>{if(S.screen==='loading'){const bv=_lsGet('exechq_beta_verified');ss({screen:bv?'splash':'beta_gate',betaVerified:!!bv});}},2000);
 render();
 </script></body></html>
