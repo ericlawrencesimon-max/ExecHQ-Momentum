@@ -1030,8 +1030,7 @@ function addCustomSource(){
   saveUserData();
   render();
 }
-
-SA.onAuthStateChanged(async(user)=>{try{
+SA.onAuthStateChanged(async(user)=>{
 if(user&&user.uid!=='demo'){const saved=await SDB.get(user.uid);
 if(saved&&saved.onboardingStep&&!saved.indexResult){S.ud={name:saved.name||'',title:saved.title||'',company:saved.company||'',industry:saved.industry||'',expertise:saved.expertise||'',goals:saved.goals||[],aspiredRole:saved.aspiredRole||'',careerObstacle:saved.careerObstacle||'',successVision:saved.successVision||'',growthGoals:saved.growthGoals||'',leadershipContext:saved.leadershipContext||'',inTransition:saved.inTransition||false,shareEcosystem
 :saved.shareEcosystem??true,partnerActivations:saved.partnerActivations??true,searchAlerts:saved.searchAlerts??false};const _nextScreen=(saved.onboardingStep==='complete')?'app':saved.onboardingStep;ss({screen:_nextScreen,user});return;}
